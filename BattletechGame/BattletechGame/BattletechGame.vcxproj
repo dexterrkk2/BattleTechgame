@@ -128,12 +128,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Battletech.cpp" />
+    <ClCompile Include="Hex.cpp" />
     <ClCompile Include="Limb.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Mech.cpp" />
     <ClCompile Include="TIle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Hex.h" />
     <ClInclude Include="Limb.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Mech.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>
