@@ -3,6 +3,8 @@ using std::cout;
 using std::endl;
 using std::string;
 using std::cin;
+#include "Map.h";
+#include "Hex.h";
 int rollIDice() 
 {
 	int diceRoll = (rand() % 6) + 1;
@@ -11,8 +13,8 @@ int rollIDice()
 }
 int main() 
 {
-	srand(time(0));
-	int test = rollIDice();
-	cout << test<<endl;
+	Hex hex[50];
+	Map map;
+	map.drawGrid(7, 7, hex);
 	return 0;
 }
