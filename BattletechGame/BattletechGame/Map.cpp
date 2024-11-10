@@ -5,7 +5,7 @@ using std::cout;
 using std::endl;
 using std::string;
 using std::cin;
-void Map::drawGrid(int sizeX, int sizeY, Hex hex[][7], DrawnHex drawnHex[][7])
+void Map::drawGrid(int sizeX, int sizeY, vector<vector<DrawnHex>> &drawnHex)
 {
 	for (int i = 0; i < sizeX; i++) 
 	{
@@ -15,7 +15,6 @@ void Map::drawGrid(int sizeX, int sizeY, Hex hex[][7], DrawnHex drawnHex[][7])
 		for (int j = 0; j < sizeY; j++) 
 		{
 			//draw horizontal
-			drawnHex[i][j] = *new DrawnHex(hex[i][j]);
             drawHex(drawnHex[i][j], i, j);
             if (i > 0) 
             {
@@ -31,10 +30,12 @@ void Map::drawGrid(int sizeX, int sizeY, Hex hex[][7], DrawnHex drawnHex[][7])
 }
 string Map::drawHex(DrawnHex& hex, int cordX, int cordY)
 {
+    //cout << "Set cords" << endl;
+    //cout << cordX << cordY << endl;
     hex.setcords(cordX, cordY);
 	return 	hex.getImage();
 }
-void Map::printHex(int cols, DrawnHex hex[]) {
+void Map::printHex(int cols, vector<DrawnHex> &hex) {
     // Height and width of each hexagon
     int height = 5; // Height of one hexagon
     int width = 8;   // Width of one hexagon (including spaces)

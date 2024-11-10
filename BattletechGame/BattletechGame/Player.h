@@ -43,13 +43,13 @@ public:
     {
         ++facing;
     }
-    vector<DrawnHex> CanMoveTo(DrawnHex position, DrawnHex grid [][7])
+    vector<DrawnHex> CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> grid)
     {
         vector<DrawnHex> positions;
         if (facing == Direction::NORTH || facing == Direction::SOUTH) 
         {
             cout << "North"<<endl;
-            if (position.getX() < 6) 
+            if (position.getX() < grid.size()-1) 
             {
                 positions.push_back(grid[position.getX() + 1][position.getY()]);
             }
@@ -61,19 +61,19 @@ public:
         else if (facing == Direction::NORTHEAST || facing == Direction::SOUTHWEST) 
         {
             cout << "NorthEast" << endl;
-            if (position.getX() < 6 && position.getY()>0)
+            if (position.getX() < 0 && position.getY()>0)
             {
-                positions.push_back(grid[position.getX() + 1][position.getY() - 1]);
+                positions.push_back(grid[position.getX() - 1][position.getY() - 1]);
             }
-            if (position.getX() > 0 && position.getY()<6)
+            if (position.getX() > grid.size() - 1 && position.getY()<grid.size()-1)
             {
-                positions.push_back(grid[position.getX() - 1][position.getY() + 1]);
+                positions.push_back(grid[position.getX() + 1][position.getY() + 1]);
             }
         }
         else if (facing == Direction::EAST || facing == Direction::WEST)
         {
             cout << "East" << endl;
-            if (position.getY() < 6)
+            if (position.getY() < grid.size() - 1)
             {
                 positions.push_back(grid[position.getX()][position.getY() + 1]);
             }
@@ -85,11 +85,11 @@ public:
         else if (facing == Direction::SOUTHEAST || facing == Direction::NORTHWEST)
         {
             cout << "NorthWest" << endl;
-            if (position.getX() > 0 && position.getY() < 6)
+            if (position.getX() > 0 && position.getY() < grid.size() - 1)
             {
                 positions.push_back(grid[position.getX() -1][position.getY() + 1]);
             }
-            if (position.getX() < 6 && position.getY() > 0)
+            if (position.getX() < grid.size() - 1 && position.getY() > 0)
             {
                 positions.push_back(grid[position.getX() + 1][position.getY() - 1]);
             }

@@ -1,9 +1,11 @@
 #pragma once
 #include "Hex.h";
+#include <vector>
+using std::vector;
 class Map 
 {
 public:
-	void drawGrid(int sizeX, int sizeY, Hex hex[][7], DrawnHex drawnHex[][7]);
+	void drawGrid(int sizeX, int sizeY,vector<vector<DrawnHex>> &drawnHexes);
 	string drawHex(DrawnHex& hex, int cordX, int cordY);
-	void printHex(int cols, DrawnHex hex[]);
-};
+	void printHex(int cols, vector<DrawnHex> &hex);
+}; 
