@@ -13,8 +13,13 @@ int rollIDice()
 }
 int main() 
 {
-	Hex hex[50];
+	Hex hex[7][7];
+	Mech mech;
+	mech.setSpeed(1);
+	mech.setImage("Maa");
+	hex[3][5].setMech(mech);
+	DrawnHex drawnHex[7][7];
 	Map map;
-	map.drawGrid(7, 7, hex);
+	map.drawGrid(7, 7, hex, drawnHex);
 	return 0;
 }

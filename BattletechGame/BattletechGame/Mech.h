@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include <iostream>
 #include <string>
 using std::cout;
@@ -9,28 +8,51 @@ using std::cin;
 
 class Mech {
 private:
-	int walk;
+	int walkSpeed =0;
 	int heat;
 	int weight;
-	int jump; 
+	int jumpSpeed; 
+	string image;
 public:
-	void fireWeapon() {
+	void fireWeapon() 
+	{
 
 	}
-	int walk() {
-
-		return walk;
+	int walk() 
+	{
+		return walkSpeed;
 	}
-	void run() {
-
-	}
-	void jump() {
+	void run() 
+	{
 
 	}
-	void melee() {
+	void jump() 
+	{
 
 	}
+	void melee() 
+	{
 
+	}
+	void setSpeed(int walkSpeed) 
+	{
+		this->walkSpeed = walkSpeed;
+	}
+	string getImage() {
+		return image;
+	}
+	Mech() 
+	{
+		walkSpeed = -1;
+		heat = 0; 
+		weight = 0; 
+		jumpSpeed = 0;
+		image = "   ";
+	}
+	void setImage(string image) 
+	{
+		this->image = image;
+	}
 };
 
 
