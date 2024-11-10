@@ -17,12 +17,19 @@ void Map::drawGrid(int sizeX, int sizeY, Hex hex[][7], DrawnHex drawnHex[][7])
 			//draw horizontal
 			drawnHex[i][j] = *new DrawnHex(hex[i][j]);
             drawHex(drawnHex[i][j], i, j);
+            if (i > 0) 
+            {
+                drawnHex[i][j].setPointingTo(drawnHex[i - 1][j].getHex());
+            }
+            if (i == j - 1) {
+                drawnHex[0][j].setPointingTo(drawnHex[1][j].getHex());
+            }
 		}
         printHex(sizeY, drawnHex[i]);
 		//cout << endl;
 	}
 }
-string Map::drawHex(DrawnHex hex, int cordX, int cordY)
+string Map::drawHex(DrawnHex& hex, int cordX, int cordY)
 {
     hex.setcords(cordX, cordY);
 	return 	hex.getImage();

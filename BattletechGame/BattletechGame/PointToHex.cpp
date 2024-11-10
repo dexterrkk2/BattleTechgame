@@ -89,7 +89,7 @@ public:
                 std::cout << "Blocked at (" << row << ", " << col << ")\n";
                 break;
             }
-            std::cout << "  -> Hex (" << row << ", " << col << ")\n";
+            std::cout << "  -> HexStruct (" << row << ", " << col << ")\n";
 
             switch (player.facing) {
             case Direction::NORTH: row--; break;
@@ -111,18 +111,18 @@ public:
     }
 };
 
-int main() {
-    // Initialize grid, player, and arrow
-    HexGrid hexGrid;
-    Player player(5, 5, Direction::EAST); // Starting position (5, 5) facing EAST
-    Arrow arrow(&hexGrid);
-
-    // Block a few hexes for testing
-    hexGrid.blockHex(5, 6);
-    hexGrid.blockHex(5, 8);
-
-    // Display the arrow's path based on player's current facing direction
-    arrow.displayPath(player);
-
-    return 0;
-}
+//int main() {
+//    // Initialize grid, player, and arrow
+//    HexGrid hexGrid;
+//    Player player(5, 5, Direction::EAST); // Starting position (5, 5) facing EAST
+//    Arrow arrow(&hexGrid);
+//
+//    // Block a few hexes for testing
+//    hexGrid.blockHex(5, 6);
+//    hexGrid.blockHex(5, 8);
+//
+//    // Display the arrow's path based on player's current facing direction
+//    arrow.displayPath(player);
+//
+//    return 0;
+//}

@@ -2,6 +2,7 @@
 #include "Mech.h"
 #include <iostream>
 using std::string;
+using std::ostream;
 #pragma once
 class Hex :public Tile 
 {
@@ -14,15 +15,22 @@ public:
 	{
 		return mech;
 	}
+	void eraseMech() 
+	{
+		this->mech = *new Mech();
+		//cout<<getImage();
+	}
+	void setMech(Mech& mech) 
+	{
+		this->mech = mech;
+		//cout << getImage() << endl;
+	}
 	bool hasmech() {
 		if (mech.walk() >0)
 		{
 			return true;
 		}
 		return false;
-	}
-	void setMech(Mech mech) {
-		this->mech = mech;
 	}
 	Hex() 
 	{
@@ -31,6 +39,10 @@ public:
 	string getImage() {
 		return mech.getImage();
 	}
+	Hex* getPointingTo() 
+	{
+		return pointingTo;
+	}
 };
 class DrawnHex
 {
@@ -38,12 +50,11 @@ private:
 	string image;
 	int x;
 	int y;
-	Hex hex;
+	Hex& hex;
 public:
-	DrawnHex(Hex hex= *new Hex())
+	DrawnHex(Hex& hex): hex(hex)
 	{
 		this->image = hex.getImage();
-		this->hex = hex;
 		x = 0;
 		y = 0;
 	}
@@ -67,5 +78,18 @@ public:
 	int getY() 
 	{
 		return y;
+	}
+	void setPointingTo(Hex& hex) 
+	{
+		hex.Rotate(hex);
+	}
+	Hex& getHex() 
+	{
+		return hex;
+	}
+	friend ostream& operator<<(ostream& os, DrawnHex hex) 
+	{
+		os << "X position: " << hex.getX() << " Y position: " << hex.getY() << " has mech: " << hex.hex.hasmech();
+		return os;
 	}
 };

@@ -132,6 +132,7 @@
     <ClCompile Include="Limb.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Mech.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="TIle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +140,7 @@
     <ClInclude Include="Limb.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Mech.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
