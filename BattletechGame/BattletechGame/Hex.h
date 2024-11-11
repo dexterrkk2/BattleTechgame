@@ -1,6 +1,7 @@
 #include "Tile.h";
 #include "Mech.h"
 #include <iostream>
+#include <windows.h>
 using std::string;
 using std::ostream;
 #pragma once
@@ -9,6 +10,7 @@ class Hex :public Tile
 private:
 	Hex* pointingTo;
 	Mech mech;
+	int color; 
 public: 
 	void Rotate(Hex& hex);
 	Mech getMech() 
@@ -18,11 +20,13 @@ public:
 	void eraseMech() 
 	{
 		this->mech = *new Mech();
+		color = FOREGROUND_BLUE;
 		//cout<<getImage();
 	}
 	void setMech(Mech& mech) 
 	{
 		this->mech = mech;
+		color = FOREGROUND_RED;
 		//cout << getImage() << endl;
 	}
 	bool hasmech() {
@@ -35,13 +39,23 @@ public:
 	Hex() 
 	{
 		pointingTo = this;
+		color = FOREGROUND_BLUE;
 	}
-	string getImage() {
+	string getImage() 
+	{
 		return mech.getImage();
 	}
 	Hex* getPointingTo() 
 	{
 		return pointingTo;
+	}
+	void setColor(int i) 
+	{
+		color = i;
+	}
+	int getColor() 
+	{
+		return color;
 	}
 };
 class DrawnHex
@@ -57,6 +71,10 @@ public:
 		this->image = hex.getImage();
 		x = 0;
 		y = 0;
+	}
+	~DrawnHex() 
+	{
+		
 	}
 	string getImage() 
 	{
@@ -86,6 +104,14 @@ public:
 	Hex& getHex() 
 	{
 		return hex;
+	}
+	void setColor(int i) 
+	{
+		hex.setColor(i);
+	}
+	int getColor()
+	{
+		return hex.getColor();
 	}
 	friend ostream& operator<<(ostream& os, DrawnHex hex) 
 	{

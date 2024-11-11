@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <windows.h>
 using std::vector;
 enum Direction { NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST };
 enum  Direction operator++(enum Direction &d)
@@ -65,7 +66,7 @@ public:
             {
                 positions.push_back(grid[position.getX() - 1][position.getY() - 1]);
             }
-            if (position.getX() > grid.size() - 1 && position.getY()<grid.size()-1)
+            if (position.getX() > grid.size() - 1 && position.getY()< grid[0].size()-1)
             {
                 positions.push_back(grid[position.getX() + 1][position.getY() + 1]);
             }
@@ -73,7 +74,7 @@ public:
         else if (facing == Direction::EAST || facing == Direction::WEST)
         {
             cout << "East" << endl;
-            if (position.getY() < grid.size() - 1)
+            if (position.getY() < grid[0].size() -1)
             {
                 positions.push_back(grid[position.getX()][position.getY() + 1]);
             }
@@ -85,7 +86,7 @@ public:
         else if (facing == Direction::SOUTHEAST || facing == Direction::NORTHWEST)
         {
             cout << "NorthWest" << endl;
-            if (position.getX() > 0 && position.getY() < grid.size() - 1)
+            if (position.getX() > 0 && position.getY() < grid[0].size() - 1)
             {
                 positions.push_back(grid[position.getX() -1][position.getY() + 1]);
             }

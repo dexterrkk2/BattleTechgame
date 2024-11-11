@@ -1,10 +1,12 @@
 #include <iostream>
+#include <windows.h>
 #include "Hex.h"
 #include "Map.h";
 using std::cout;
 using std::endl;
 using std::string;
 using std::cin;
+using namespace std;
 void Map::drawGrid(int sizeX, int sizeY, vector<vector<DrawnHex>> &drawnHex)
 {
 	for (int i = 0; i < sizeX; i++) 
@@ -42,9 +44,14 @@ void Map::printHex(int cols, vector<DrawnHex> &hex) {
     for (int i = 0; i < height; i++) 
     {
         //even lines print the top and bottom part odd print the middle
-        if (i%4 == 0) {
+        if (i%4 == 0) 
+        {
+            HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
             // Print the upper part of hexagons
-            for (int c = 0; c < cols; ++c) {
+            for (int c = 0; c < cols; ++c) 
+            {
+               
+                SetConsoleTextAttribute(hConsole, hex[c].getColor());
                 for (int j = 0; j < (width / 2)-2; j++)
                 {
                     cout << " ";
@@ -78,7 +85,10 @@ void Map::printHex(int cols, vector<DrawnHex> &hex) {
         }
         else if(i%4 == 1)
         {
-            for (int c = 0; c < cols; ++c) {
+            HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+            for (int c = 0; c < cols; ++c) 
+            {
+                SetConsoleTextAttribute(hConsole, hex[c].getColor());
                 cout << " ";
                 cout <<"/";
                 //Width minus spaces printed before and after
@@ -91,7 +101,9 @@ void Map::printHex(int cols, vector<DrawnHex> &hex) {
             cout << endl;
         }
         else {
+            HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
             for (int c = 0; c < cols; ++c) {
+                SetConsoleTextAttribute(hConsole, hex[c].getColor());
                 cout << " ";
                 cout << "\\";
                 //Width minus spaces printed before and after
@@ -107,6 +119,7 @@ void Map::printHex(int cols, vector<DrawnHex> &hex) {
                 cout << "/" << "  ";
             }
             cout << endl;
+
         }
     }
 }

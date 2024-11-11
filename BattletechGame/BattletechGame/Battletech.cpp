@@ -32,7 +32,7 @@ void move(Player& player, vector<vector<DrawnHex>> drawnHex, Map map)
 	vector<DrawnHex> movePositions = player.CanMoveTo(drawnHex[player.row][player.col], drawnHex);
 	for (int i = 0; i < movePositions.size(); i++) 
 	{
-		cout <<"Would you " <<i+1 <<" move to : "<< player.CanMoveTo(drawnHex[player.row][player.col], drawnHex)[i] << " ";
+		cout <<"Would you " <<i+1 <<" move to : "<< movePositions[i] << " ";
 	}
 	cout <<" Or " << movePositions.size() + 1 << "rotate ? ";
 	int option = getInt();
@@ -70,7 +70,6 @@ void move(Player& player, vector<vector<DrawnHex>> drawnHex, Map map)
 }
 int main() 
 {
-	
 	Hex hexes[sizex][sizey];
 	Mech mech;
 	mech.setSpeed(1);
