@@ -59,17 +59,20 @@ private:
 	Ammo ammoType;
 	int range;
 	int minRange;
-	int location;
 	int damage;
+	bool canFire;
 public:
-	Weapon(Ammo a,int d = 0, int h = 0, int r = 0, int mr = 0, int l = 0) :
-		heatGenerated(h), damage(d), range(r), minRange(mr), location(l), ammoType(a) {
+	Weapon(Ammo a,int d = 0, int h = 0, int r = 0, int mr = 0, bool cf = true) :
+		heatGenerated(h), damage(d), range(r), minRange(mr), ammoType(a), canFire(cf)  {
 	}
 	int getDamage() const {
 		return damage;
 	}
 	Ammo getAmmo() const {
 		return ammoType;
+	}
+	bool getCanFire() const {
+		return ammoType.getShots() > 0;
 	}
 };
 // Derived Weapons
@@ -91,8 +94,11 @@ public:
 	int getStructure() const {
 		return structure;
 	}
-	bool getDestroyed() const {
+	bool getIsDestroyed() const {
 		return isDestroyed;
+	}
+	int getWeaponCount() const {
+		return weaponCount;
 	}
 	Weapon* getWeapon(int index) const {
 		if (index >= 0 && index < maxWeapons) {
@@ -154,6 +160,21 @@ public:
 void Mech::fireWeapon() {
 	//Pick a target
 	//Get weapons available
+	std::vector<Weapon*> weaponsAvaiable;
+	for (int i = 0; i < RL; ++i) {
+		if (!L[i].getIsDestroyed()) {
+			for (int j = 0; j < L[i].getWeaponCount(); ++j) {
+				Weapon* weapon = L->getWeapon(j);
+				if (weapon && weapon->getCanFire()) {
+					weaponsAvaiable.push_back(weapon);
+				}
+			}
+		}
+	}
+	//TEST CODE
+	for (int i = 0; i < weaponsAvaiable.size(); ++i) {
+		std::cout << weaponsAvaiable[i] << std::endl;
+	}
 	//Pick a weapon
 	//Check if it's legal to fire
 	//Remove Ammo (If applicable)
@@ -162,13 +183,24 @@ void Mech::fireWeapon() {
 }
 
 int main() {
-	
-	AC2Ammo Bin1(LL);
-	std::cout << Bin1.getShots() << std::endl;
-	Bin1.removeAmmo();
-	std::cout << Bin1.getShots() << std::endl;
-	Weapon AC2(Bin1,Bin1.getDamage(), 3, 15, 0, CT);
-	std::cout << AC2.getDamage() << std::endl;
+	AC5Ammo bin1(CT);
+	Weapon AC5(bin1,5,3,5,0);
+	Limb parts[6];
+	Limb head;
+	Limb torso;
+	Limb leftLeg;
+	Limb rightLeg;
+	Limb leftArm;
+	Limb rightArm;
+	leftArm.addWeapon(AC5);
+	parts[H] = head;
+	parts[CT] = torso;
+	parts[LA] = leftArm;
+	parts[RA] = rightArm;
+	parts[LL] = leftLeg;
+	parts[RL] = rightLeg;
+
+
 	return 0;
 
 }
