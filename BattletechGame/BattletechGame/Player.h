@@ -102,4 +102,8 @@ public:
         this->row = row;
         this->col = col;
     }
+    void setAmountMoved(int amountMoved) 
+    {
+        mech.setAmountMoved(amountMoved);
+    }
 };

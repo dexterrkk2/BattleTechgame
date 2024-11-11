@@ -29,12 +29,19 @@ int getInt()
 }
 void move(Player& player, vector<vector<DrawnHex>> drawnHex, Map map)
 {
+	int amountMoved =0;
 	vector<DrawnHex> movePositions = player.CanMoveTo(drawnHex[player.row][player.col], drawnHex);
+	for (int i = 0; i < movePositions.size(); i++)
+	{
+		drawnHex[movePositions[i].getX()][movePositions[i].getY()].setColor(FOREGROUND_GREEN);
+	}
+	map.printHex(sizey, sizex, drawnHex);
 	for (int i = 0; i < movePositions.size(); i++) 
 	{
 		cout <<"Would you " <<i+1 <<" move to : "<< movePositions[i] << " ";
 	}
 	cout <<" Or " << movePositions.size() + 1 << "rotate ? ";
+
 	int option = getInt();
 	while (option <= 0 ||option > movePositions.size()+1) 
 	{
@@ -58,15 +65,25 @@ void move(Player& player, vector<vector<DrawnHex>> drawnHex, Map map)
 		{
 			player.turnRight();
 		}
+		for (int i = 0; i < movePositions.size(); i++)
+		{
+			drawnHex[movePositions[i].getX()][movePositions[i].getY()].setColor(FOREGROUND_BLUE);
+		}
 	}
 	else
 	{
 		cout << "Moved" << endl;
 		drawnHex[player.row][player.col].getHex().eraseMech();
+		for (int i = 0; i < movePositions.size(); i++)
+		{
+			drawnHex[movePositions[i].getX()][movePositions[i].getY()].setColor(FOREGROUND_BLUE);
+		}
 		player.SetPostiiton(movePositions[option - 1].getX(), (movePositions[option - 1].getY()));
+		amountMoved++;
 		drawnHex[player.row][player.col].getHex().setMech(player.mech);
 		map.drawGrid(sizex, sizey, drawnHex);
 	}
+	player.setAmountMoved(amountMoved);
 }
 int main() 
 {

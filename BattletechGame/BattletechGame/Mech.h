@@ -13,6 +13,7 @@ private:
 	int weight;
 	int jumpSpeed; 
 	string image;
+	int amountMovedThisTurn;
 public:
 	void fireWeapon() 
 	{
@@ -48,10 +49,15 @@ public:
 		weight = 0; 
 		jumpSpeed = 0;
 		image = "   ";
+		amountMovedThisTurn = 0;
 	}
 	void setImage(string image) 
 	{
 		this->image = image;
+	}
+	void setAmountMoved(int amountMoved) 
+	{
+		amountMovedThisTurn = amountMoved;
 	}
 };
 

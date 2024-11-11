@@ -26,7 +26,7 @@ void Map::drawGrid(int sizeX, int sizeY, vector<vector<DrawnHex>> &drawnHex)
                 drawnHex[0][j].setPointingTo(drawnHex[1][j].getHex());
             }
 		}
-        printHex(sizeY, drawnHex[i]);
+       
 		//cout << endl;
 	}
 }
@@ -37,89 +37,92 @@ string Map::drawHex(DrawnHex& hex, int cordX, int cordY)
     hex.setcords(cordX, cordY);
 	return 	hex.getImage();
 }
-void Map::printHex(int cols, vector<DrawnHex> &hex) {
+void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
     // Height and width of each hexagon
     int height = 5; // Height of one hexagon
     int width = 8;   // Width of one hexagon (including spaces)
-    for (int i = 0; i < height; i++) 
+    for (int j = 0; j < rows; j++) 
     {
-        //even lines print the top and bottom part odd print the middle
-        if (i%4 == 0) 
+        for (int i = 0; i < height; i++)
         {
-            HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-            // Print the upper part of hexagons
-            for (int c = 0; c < cols; ++c) 
+            //even lines print the top and bottom part odd print the middle
+            if (i % 4 == 0)
             {
-               
-                SetConsoleTextAttribute(hConsole, hex[c].getColor());
-                for (int j = 0; j < (width / 2)-2; j++)
+                HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+                // Print the upper part of hexagons
+                for (int c = 0; c < cols; ++c)
                 {
-                    cout << " ";
-                }
-                cout << "---";
-                //width of hex minus num of printed spaced before
-                for (int j = 0; j < (width/2)-1; j++) 
-                {
-                    cout << " ";
-                }
-            }
-            cout << endl;
-        }
-        else if(i %4 == 2){
-            //// Print the middle part of hexagons
-            //for (int c = 0; c < cols; ++c) {
-            //    cout<<" ";
-            //    //Width minus spaces printed before and after
-            //    for (int j = 0; j < (width/4)-1; j++)
-            //    {
-            //        cout << " ";
-            //    }
-            //    cout << hex[c].getImage();
-            //    for (int j = 0; j < (width / 4)-1; j++)
-            //    {
-            //        cout << " ";
-            //    }
-            //    cout << " " << " ";
-            //}
-            //cout << endl;
-        }
-        else if(i%4 == 1)
-        {
-            HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-            for (int c = 0; c < cols; ++c) 
-            {
-                SetConsoleTextAttribute(hConsole, hex[c].getColor());
-                cout << " ";
-                cout <<"/";
-                //Width minus spaces printed before and after
-                for (int j = 0; j < (width/2)-1; j++)
-                {
-                    cout << " ";
-                }
-                cout << "\\" << "  ";
-            }
-            cout << endl;
-        }
-        else {
-            HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-            for (int c = 0; c < cols; ++c) {
-                SetConsoleTextAttribute(hConsole, hex[c].getColor());
-                cout << " ";
-                cout << "\\";
-                //Width minus spaces printed before and after
-                for (int j = 0; j < (width / 4)-2; j++)
-                {
-                    cout << " ";
-                }
-                cout << hex[c].getImage();
-                for (int j = 0; j < (width / 4)-2; j++)
-                {
-                    cout << " ";
-                }
-                cout << "/" << "  ";
-            }
-            cout << endl;
 
+                    SetConsoleTextAttribute(hConsole, hex[j][c].getColor());
+                    for (int j = 0; j < (width / 2) - 2; j++)
+                    {
+                        cout << " ";
+                    }
+                    cout << "---";
+                    //width of hex minus num of printed spaced before
+                    for (int j = 0; j < (width / 2) - 1; j++)
+                    {
+                        cout << " ";
+                    }
+                }
+                cout << endl;
+            }
+            else if (i % 4 == 2) {
+                //// Print the middle part of hexagons
+                //for (int c = 0; c < cols; ++c) {
+                //    cout<<" ";
+                //    //Width minus spaces printed before and after
+                //    for (int j = 0; j < (width/4)-1; j++)
+                //    {
+                //        cout << " ";
+                //    }
+                //    cout << hex[c].getImage();
+                //    for (int j = 0; j < (width / 4)-1; j++)
+                //    {
+                //        cout << " ";
+                //    }
+                //    cout << " " << " ";
+                //}
+                //cout << endl;
+            }
+            else if (i % 4 == 1)
+            {
+                HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+                for (int c = 0; c < cols; ++c)
+                {
+                    SetConsoleTextAttribute(hConsole, hex[j][c].getColor());
+                    cout << " ";
+                    cout << "/";
+                    //Width minus spaces printed before and after
+                    for (int j = 0; j < (width / 2) - 1; j++)
+                    {
+                        cout << " ";
+                    }
+                    cout << "\\" << "  ";
+                }
+                cout << endl;
+            }
+            else {
+                HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+                for (int c = 0; c < cols; ++c) {
+                    SetConsoleTextAttribute(hConsole, hex[j][c].getColor());
+                    cout << " ";
+                    cout << "\\";
+                    //Width minus spaces printed before and after
+                    for (int j = 0; j < (width / 4) - 2; j++)
+                    {
+                        cout << " ";
+                    }
+                    cout << hex[j][c].getImage();
+                    for (int j = 0; j < (width / 4) - 2; j++)
+                    {
+                        cout << " ";
+                    }
+                    cout << "/" << "  ";
+                }
+                cout << endl;
+
+            }
         }
     }
 }
