@@ -1,29 +1,36 @@
 #pragma once
 #include <vector>
-#include <windows.h>
+#include "Hex.h"
 using std::vector;
+//defines directions as enums, 0-7
 enum Direction { NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST };
-enum  Direction operator++(enum Direction &d)
+//overloads ++ operator to work for directions
+inline enum  Direction operator++(enum Direction& d)
 {
-    if (d == NORTHWEST) 
+    //lopps back to beginning of enums
+    if (d == NORTHWEST)
     {
         d = NORTH;
     }
-    else 
+    //cycles through directions
+    else
     {
-        d= (enum Direction)(d + 1);
+        d = (enum Direction)(d + 1);
     }
     return d;
 };
-enum  Direction operator--(enum Direction& d)
+//overloads -- operator to work for directions
+inline enum  Direction operator--(enum Direction& d)
 {
+    //lopps back to end of enums
     if (d == NORTH)
     {
         d = NORTHWEST;
     }
+    //cycles through directions
     else
     {
-        d = (enum Direction)(d -1);
+        d = (enum Direction)(d - 1);
     }
     return d;
 };
@@ -38,72 +45,29 @@ public:
     // Change facing direction (left or right)
     void turnLeft() 
     {
+        //directions defined as they would be on a compass. Turning left is the same as going counterclockwise on a compass
         --facing;
     }
     void turnRight() 
     {
+        //directions defined as they would be on a compass. Turning left is the same as going clockwise on a compass
         ++facing;
     }
-    vector<DrawnHex> CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> grid)
-    {
-        vector<DrawnHex> positions;
-        if (facing == Direction::NORTH || facing == Direction::SOUTH) 
-        {
-            cout << "North"<<endl;
-            if (position.getX() < grid.size()-1) 
-            {
-                positions.push_back(grid[position.getX() + 1][position.getY()]);
-            }
-            if (position.getX() > 0) 
-            {
-                positions.push_back(grid[position.getX() - 1][position.getY()]);
-            }
-        }
-        else if (facing == Direction::NORTHEAST || facing == Direction::SOUTHWEST) 
-        {
-            cout << "NorthEast" << endl;
-            if (position.getX() < 0 && position.getY()>0)
-            {
-                positions.push_back(grid[position.getX() - 1][position.getY() - 1]);
-            }
-            if (position.getX() > grid.size() - 1 && position.getY()< grid[0].size()-1)
-            {
-                positions.push_back(grid[position.getX() + 1][position.getY() + 1]);
-            }
-        }
-        else if (facing == Direction::EAST || facing == Direction::WEST)
-        {
-            cout << "East" << endl;
-            if (position.getY() < grid[0].size() -1)
-            {
-                positions.push_back(grid[position.getX()][position.getY() + 1]);
-            }
-            if (position.getY() > 0)
-            {
-                positions.push_back(grid[position.getX()][position.getY() - 1]);
-            }
-        }
-        else if (facing == Direction::SOUTHEAST || facing == Direction::NORTHWEST)
-        {
-            cout << "NorthWest" << endl;
-            if (position.getX() > 0 && position.getY() < grid[0].size() - 1)
-            {
-                positions.push_back(grid[position.getX() -1][position.getY() + 1]);
-            }
-            if (position.getX() < grid.size() - 1 && position.getY() > 0)
-            {
-                positions.push_back(grid[position.getX() + 1][position.getY() - 1]);
-            }
-        }
-        return positions;
-    }
+    //defines where a player can move and returns a vector of places h
+    vector<DrawnHex> CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> grid);
+    //sets position of player
     void SetPostiiton(int row, int col) 
     {
         this->row = row;
         this->col = col;
     }
+    //sends how far the player had moved last turn to the mech
     void setAmountMoved(int amountMoved) 
     {
         mech.setAmountMoved(amountMoved);
+    }
+    Mech getMech() 
+    {
+        return mech;
     }
 };

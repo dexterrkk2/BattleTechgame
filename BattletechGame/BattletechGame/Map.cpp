@@ -7,22 +7,24 @@ using std::endl;
 using std::string;
 using std::cin;
 using namespace std;
+//populates the hex grid with cordinates and assigns hexes to point to other hexes
 void Map::drawGrid(int sizeX, int sizeY, vector<vector<DrawnHex>> &drawnHex)
 {
+    //runs it equal to number of rows
 	for (int i = 0; i < sizeX; i++) 
 	{
-		//string image = "Maa";
-		//draw vertical
-        
-		for (int j = 0; j < sizeY; j++) 
+        //runs it equal to number of columns
+        for (int j = 0; j < sizeY; j++)
 		{
-			//draw horizontal
+			//sets the cords of the hex
             drawHex(drawnHex[i][j], i, j);
             if (i > 0) 
             {
+                //sets hexes to point at the hexes below them
                 drawnHex[i][j].setPointingTo(drawnHex[i - 1][j].getHex());
             }
             if (i == j - 1) {
+                //sets the hexes at 0 to point at the row above it
                 drawnHex[0][j].setPointingTo(drawnHex[1][j].getHex());
             }
 		}
@@ -39,34 +41,42 @@ string Map::drawHex(DrawnHex& hex, int cordX, int cordY)
 }
 void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
     // Height and width of each hexagon
-    int height = 5; // Height of one hexagon
-    int width = 8;   // Width of one hexagon (including spaces)
+    int height = 5; 
+    int width = 8;  
+    //runs this equal to number of rows
     for (int j = 0; j < rows; j++) 
     {
+        //prints the number of lines in each hexagon
         for (int i = 0; i < height; i++)
         {
-            //even lines print the top and bottom part odd print the middle
+            //prints the top and bottom of the hexagon
             if (i % 4 == 0)
             {
+                //takes cout output
                 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
                 // Print the upper part of hexagons
+                //prints for the number of hexagons in column
                 for (int c = 0; c < cols; ++c)
                 {
-
+                    //sets output to the color of the hex from the hex 2d vector
                     SetConsoleTextAttribute(hConsole, hex[j][c].getColor());
+                    //prints half the spaces needed for spacing
                     for (int j = 0; j < (width / 2) - 2; j++)
                     {
                         cout << " ";
                     }
+                    //prints the top of the hexagon
                     cout << "---";
-                    //width of hex minus num of printed spaced before
+                    //prints the other half of the spaces
                     for (int j = 0; j < (width / 2) - 1; j++)
                     {
                         cout << " ";
                     }
                 }
+                //goes to the next line
                 cout << endl;
             }
+            //used to print the middle, now just prints nothing to make sure it lines up
             else if (i % 4 == 2) {
                 //// Print the middle part of hexagons
                 //for (int c = 0; c < cols; ++c) {
@@ -85,11 +95,15 @@ void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
                 //}
                 //cout << endl;
             }
+            //prints the upper middle part of the hexagon
             else if (i % 4 == 1)
             {
+                //takes cout output
                 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+                //prints for the number of hexagons
                 for (int c = 0; c < cols; ++c)
                 {
+                    //sets output to hex color
                     SetConsoleTextAttribute(hConsole, hex[j][c].getColor());
                     cout << " ";
                     cout << "/";
@@ -102,26 +116,32 @@ void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
                 }
                 cout << endl;
             }
+            //prints the lower middle part of the hexagon
             else {
+                //takes in output
                 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+                //prints for the number of hexagons in column
                 for (int c = 0; c < cols; ++c) {
+                    //sets output to hex color
                     SetConsoleTextAttribute(hConsole, hex[j][c].getColor());
                     cout << " ";
                     cout << "\\";
-                    //Width minus spaces printed before and after
+                    //prints half the spaces
                     for (int j = 0; j < (width / 4) - 2; j++)
                     {
                         cout << " ";
                     }
+                    //gets the image from the mech that lives on the hex code. If none prints three spaces 
                     cout << hex[j][c].getImage();
+                    //prints the other half of the spaces
                     for (int j = 0; j < (width / 4) - 2; j++)
                     {
                         cout << " ";
                     }
                     cout << "/" << "  ";
                 }
+                //goes to next line
                 cout << endl;
-
             }
         }
     }

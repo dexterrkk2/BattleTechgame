@@ -5,7 +5,6 @@ using std::cout;
 using std::endl;
 using std::string;
 using std::cin;
-
 class Mech {
 private:
 	int walkSpeed =0;
@@ -15,9 +14,11 @@ private:
 	string image;
 	int amountMovedThisTurn;
 public:
-	void fireWeapon() 
+	//uses a generic to represent a drawn hex, because hex requires mech to be defined
+	template <class T>
+	void fireWeapon(T &targetSquare) 
 	{
-
+		cout << "firing at "<< targetSquare <<endl;
 	}
 	int walk() 
 	{
