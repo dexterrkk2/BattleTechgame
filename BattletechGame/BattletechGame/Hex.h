@@ -8,7 +8,7 @@ class Hex
 {
 private:
 	Hex* pointingTo;
-	Mech mech;
+	Mech& mech;
 	int color; 
 public: 
 	//sets what the mech is pointing to
@@ -43,7 +43,7 @@ public:
 		return false;
 	}
 	//constructs hex
-	Hex() 
+	Hex(Mech& mech): mech(mech)
 	{
 		pointingTo = this;
 		color = FOREGROUND_BLUE;

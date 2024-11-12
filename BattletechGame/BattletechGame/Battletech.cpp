@@ -15,12 +15,7 @@ int randomNumber(int max)
 	return randomNum;
 }
 //rolls 2d6 and gets the value
-int rollIDice() 
-{
-	int diceRoll = randomNumber(6);
-	diceRoll += randomNumber(6);
-	return diceRoll;
-}
+
 //takes in input and makes sure it is an int
 int getInt() 
 {
@@ -162,10 +157,21 @@ void PlayerTurn(Player& player, vector<vector<DrawnHex>> drawnHex, Map map)
 int main() 
 {
 	//sets the size of the hex 
-	Hex hexes[sizex][sizey];
-	Mech mech;
+	vector<vector<Hex>> hexes;
+	Limb parts[6];
+	//creates a vector of columns and then adds it to a vector to make rows
+	for (int i = 0; i < sizex; i++)
+	{
+		vector<Hex>cols;
+		for (int j = 0; j < sizey; j++)
+		{
+			cols.push_back(*new Hex(*new Mech(parts)));
+		}
+		hexes.push_back(cols);
+	}
+	Mech mech(parts);
 	//creates enemy Mech
-	Mech enemyMech;
+	Mech enemyMech(parts);
 	//mechs default to -1 so we know if it is active or not
 	mech.setSpeed(2);
 	enemyMech.setSpeed(2);
