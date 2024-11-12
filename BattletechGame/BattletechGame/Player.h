@@ -34,14 +34,16 @@ inline enum  Direction operator--(enum Direction& d)
     }
     return d;
 };
-class Player {
-public:
+class Player 
+{
+private:
     int row, col;
     Direction facing;
     Mech mech;
-    Player(int startRow, int startCol, Direction startFacing, Mech mech)
-        : row(startRow), col(startCol), facing(startFacing), mech(mech) {}
-
+    string name;
+public:
+    Player(int startRow, int startCol, Direction startFacing, Mech mech, string name)
+        : row(startRow), col(startCol), facing(startFacing), mech(mech), name(name) {}
     // Change facing direction (left or right)
     void turnLeft() 
     {
@@ -65,6 +67,18 @@ public:
     void setAmountMoved(int amountMoved) 
     {
         mech.setAmountMoved(amountMoved);
+    }
+    int getRow() 
+    {
+        return row;
+    }
+    int getCol() 
+    {
+        return col; 
+    }
+    string getName() 
+    {
+        return name;
     }
     Mech getMech() 
     {

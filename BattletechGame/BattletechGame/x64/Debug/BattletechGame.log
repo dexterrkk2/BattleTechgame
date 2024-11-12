@@ -4,14 +4,7 @@ C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattletechGame\BattletechGame\
   (compiling source file 'Battletech.cpp')
   
 C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(130,43): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(198,13): warning C4101: 'x': unreferenced local variable
-  Hex.cpp
-  Map.cpp
-C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattletechGame\BattletechGame\Map.cpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattletechGame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'Map.cpp')
-  
-  Player.cpp
-  Generating Code...
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(97,51): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(156,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(203,13): warning C4101: 'x': unreferenced local variable
   BattletechGame.vcxproj -> C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattletechGame\x64\Debug\BattletechGame.exe

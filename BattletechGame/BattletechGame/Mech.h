@@ -40,6 +40,10 @@ public:
 	{
 		this->walkSpeed = walkSpeed;
 	}
+	int getSpeed() 
+	{
+		return walkSpeed;
+	}
 	string getImage() {
 		return image;
 	}
@@ -59,6 +63,10 @@ public:
 	void setAmountMoved(int amountMoved) 
 	{
 		amountMovedThisTurn = amountMoved;
+	}
+	int getAmountMoved() 
+	{
+		return amountMovedThisTurn;
 	}
 };
 

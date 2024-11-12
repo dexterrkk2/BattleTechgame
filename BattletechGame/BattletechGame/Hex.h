@@ -27,7 +27,7 @@ public:
 		//cout<<getImage();
 	}
 	//changed color to red when this hex has a mech
-	void setMech(Mech& mech) 
+	void setMech(Mech mech) 
 	{
 		this->mech = mech;
 		//foreground red is defined as an int in memory. 
