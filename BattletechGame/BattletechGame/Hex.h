@@ -7,26 +7,26 @@ using std::ostream;
 class Hex 
 {
 private:
-	Mech& mech;
+	Mech mech;
 	int color; 
 public: 
 	//sets what the mech is pointing to
 	/*void Rotate(Hex& hex);*/
 	//returns mech
-	Mech getMech() 
+	Mech& getMech() 
 	{
 		return mech;
 	}
 	//returns hex back to blue and reassigns hex back to default
 	void eraseMech() 
 	{
-		this->mech = *new Mech();
+		this->mech = Mech();
 		//foreground blue is defined as an int in memory. 
 		color = FOREGROUND_BLUE;
 		//cout<<getImage();
 	}
 	//changed color to red when this hex has a mech
-	void setMech(Mech mech) 
+	void setMech(Mech& mech) 
 	{
 		this->mech = mech;
 		//foreground red is defined as an int in memory. 
@@ -35,7 +35,7 @@ public:
 	}
 	//checks if this mech is active. a mech with a negative movespeed is not active
 	bool hasmech() {
-		if (mech.walk() >0)
+		if (mech.walk()>0)
 		{
 			return true;
 		}

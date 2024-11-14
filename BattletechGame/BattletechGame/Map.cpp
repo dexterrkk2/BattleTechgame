@@ -44,7 +44,7 @@ void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
     int height = 5; 
     int width = 8;  
     //runs this equal to number of rows
-    for (int j = 0; j < rows; j++) 
+    for (int q = 0; q < rows; q++) 
     {
         //prints the number of lines in each hexagon
         for (int i = 0; i < height; i++)
@@ -59,7 +59,7 @@ void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
                 for (int c = 0; c < cols; ++c)
                 {
                     //sets output to the color of the hex from the hex 2d vector
-                    SetConsoleTextAttribute(hConsole, hex[j][c].getColor());
+                    SetConsoleTextAttribute(hConsole, hex[q][c].getColor());
                     //prints half the spaces needed for spacing
                     for (int j = 0; j < (width / 2) - 2; j++)
                     {
@@ -104,7 +104,7 @@ void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
                 for (int c = 0; c < cols; ++c)
                 {
                     //sets output to hex color
-                    SetConsoleTextAttribute(hConsole, hex[j][c].getColor());
+                    SetConsoleTextAttribute(hConsole, hex[q][c].getColor());
                     cout << " ";
                     cout << "/";
                     //Width minus spaces printed before and after
@@ -123,7 +123,7 @@ void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
                 //prints for the number of hexagons in column
                 for (int c = 0; c < cols; ++c) {
                     //sets output to hex color
-                    SetConsoleTextAttribute(hConsole, hex[j][c].getColor());
+                    SetConsoleTextAttribute(hConsole, hex[q][c].getColor());
                     cout << " ";
                     cout << "\\";
                     //prints half the spaces
@@ -132,7 +132,7 @@ void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
                         cout << " ";
                     }
                     //gets the image from the mech that lives on the hex code. If none prints three spaces 
-                    cout << hex[j][c].getImage();
+                    cout << hex[q][c].getImage();
                     //prints the other half of the spaces
                     for (int j = 0; j < (width / 4) - 2; j++)
                     {

@@ -39,10 +39,10 @@ class Player
 private:
     int row, col;
     Direction facing;
-    Mech mech;
+    Mech& mech;
     string name;
 public:
-    Player(int startRow, int startCol, Direction startFacing, Mech mech, string name)
+    Player(int startRow, int startCol, Direction startFacing, Mech& mech, string name)
         : row(startRow), col(startCol), facing(startFacing), mech(mech), name(name) {}
     // Change facing direction (left or right)
     void turnLeft() 
@@ -80,7 +80,7 @@ public:
     {
         return name;
     }
-    Mech getMech() 
+    Mech& getMech() 
     {
         return mech;
     }

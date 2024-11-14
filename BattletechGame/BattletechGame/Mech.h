@@ -165,11 +165,16 @@ inline void Limb::takeDamage(int d) {
 	else {
 		structureDamage += d;
 	}
+
+	cout << "You dealt " << d << " damage" << endl;
+	if (structureDamage >= structure) {
+		isDestroyed = true;
+	}
 }
 
 class Mech {
 private:
-	int walkSpeed =0;
+	int walkSpeed;
 	int heat;
 	int weight;
 	string image;
@@ -193,7 +198,8 @@ public:
 	}
 	void destroyMech() 
 	{
-
+		walkSpeed = -1;
+		cout << "Mech Destroyed" << endl;
 	}
 	void melee() 
 	{
@@ -210,7 +216,7 @@ public:
 	string getImage() {
 		return image;
 	}
-	Mech() :walkSpeed(0), heat(0), weight(0), amountMovedThisTurn(0) {};
+	Mech() :walkSpeed(-1), heat(0), weight(0), amountMovedThisTurn(0), image("   ") {};
 	Mech(Limb* l, int m = 0, int w = 0, int h = 0) : walkSpeed(m), weight(w), heat(h) {
 		for (int i = 0; i < 6; ++i) {
 			L[i] = l[i];
@@ -292,7 +298,7 @@ inline int gator(Weapon w, int h, int r, int EM) {
 template <class T>
 void Mech::fireWeapon(T& targetSquare) {
 	//Pick a target
-	Mech Enemy = targetSquare.getHex().getMech();
+	Mech& Enemy = targetSquare.getHex().getMech();
 	//Get weapons available and pack them into a vector
 	std::vector<Weapon*> weaponsAvailable;
 	for (int i = 0; i < RL; ++i) {
@@ -339,7 +345,9 @@ void Mech::fireWeapon(T& targetSquare) {
 	std::vector<int> weaponDamage;
 	int x = targetSquare.getX() + targetSquare.getY(); // test code
 	for (int i = 0; i < weaponsSelected.size(); ++i) {
-		if (rollDice() >= gator(*weaponsSelected[i], heat, x, targetSquare.getHex().getMech().getAmountMoved())) {
+		int result = rollDice();
+		cout << "You rolled a " << result << " to hit" << endl;
+		if (result >= gator(*weaponsSelected[i], heat, x, targetSquare.getHex().getMech().getAmountMoved())) {
 			weaponDamage.push_back(weaponsSelected[i]->getDamage());
 		}
 	}
@@ -347,22 +355,36 @@ void Mech::fireWeapon(T& targetSquare) {
 	for (int i = 0; i < weaponDamage.size(); ++i) {
 		int hitLocationDice = rollDice();
 		if (hitLocationDice == 12) {
+			cout << "You Hit the Head!" << endl;
 			Enemy.L[H].takeDamage(weaponDamage[i]);
+			if (Enemy.L[H].getIsDestroyed()) 
+			{
+				Enemy.destroyMech();
+			}
 		}
 		else if (hitLocationDice == 10 || hitLocationDice == 11) {
+			cout << "You Hit the Left Arm" << endl;
 			Enemy.L[LA].takeDamage(weaponDamage[i]);
 		}
 		else if (hitLocationDice == 9) {
+			cout << "You Hit the Left Leg" << endl;
 			Enemy.L[LL].takeDamage(weaponDamage[i]);
 		}
 		else if (hitLocationDice == 5) {
+			cout << "You Hit the Right Leg" << endl;
 			Enemy.L[RL].takeDamage(weaponDamage[i]);
 		}
 		else if (hitLocationDice == 3 || hitLocationDice == 4) {
+			cout << "You Hit the Right Arm" << endl;
 			Enemy.L[RA].takeDamage(weaponDamage[i]);
 		}
 		else {
+			cout << "You Hit the Torso" << endl;
 			Enemy.L[CT].takeDamage(weaponDamage[i]);
+			if (Enemy.L[CT].getIsDestroyed())
+			{
+				Enemy.destroyMech();
+			}
 		}
 	}
 }
