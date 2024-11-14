@@ -7,27 +7,26 @@ using std::ostream;
 class Hex 
 {
 private:
-	Hex* pointingTo;
-	Mech& mech;
+	Mech mech;
 	int color; 
 public: 
 	//sets what the mech is pointing to
-	void Rotate(Hex& hex);
+	/*void Rotate(Hex& hex);*/
 	//returns mech
-	Mech getMech() 
+	Mech& getMech() 
 	{
 		return mech;
 	}
 	//returns hex back to blue and reassigns hex back to default
 	void eraseMech() 
 	{
-		this->mech = *new Mech();
+		this->mech = Mech();
 		//foreground blue is defined as an int in memory. 
 		color = FOREGROUND_BLUE;
 		//cout<<getImage();
 	}
 	//changed color to red when this hex has a mech
-	void setMech(Mech mech) 
+	void setMech(Mech& mech) 
 	{
 		this->mech = mech;
 		//foreground red is defined as an int in memory. 
@@ -36,7 +35,7 @@ public:
 	}
 	//checks if this mech is active. a mech with a negative movespeed is not active
 	bool hasmech() {
-		if (mech.walk() >0)
+		if (mech.walk()>0)
 		{
 			return true;
 		}
@@ -45,7 +44,6 @@ public:
 	//constructs hex
 	Hex(Mech& mech): mech(mech)
 	{
-		pointingTo = this;
 		color = FOREGROUND_BLUE;
 	}
 	//returns the mech id so it can be printed on hexes
@@ -54,10 +52,10 @@ public:
 		return mech.getImage();
 	}
 	//returns where this hex is pointing towards
-	Hex* getPointingTo() 
+	/*Hex getPointingTo() 
 	{
 		return pointingTo;
-	}
+	}*/
 	//sets color of hex
 	void setColor(int i) 
 	{
@@ -112,7 +110,7 @@ public:
 	//sets what hex the hex it has is pointing to in memory
 	void setPointingTo(Hex& hex) 
 	{
-		hex.Rotate(hex);
+		/*hex.Rotate(hex);*/
 	}
 	//returns the hex referenced by this class
 	Hex& getHex() 

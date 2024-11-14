@@ -1,10 +1,12 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include<vector>
 using std::cout;
 using std::endl;
 using std::string;
 using std::cin;
+
 enum forMech {
 	H, //Head 
 	CT, //Center Torse
@@ -143,6 +145,7 @@ public:
 			std::cout << "ERROR!!!" << std::endl;
 		}
 	}
+	void takeDamage(int d);
 	Limb(int a = 0, int struc = 1, bool d = false, int c = 0) : armor(a), structure(struc), isDestroyed(d), weaponCount(c) {}
 	static friend std::ostream& operator<<(std::ostream& os, const Limb& l) {
 		os << "The armor of this limb is " << l.armor << std::endl;
@@ -151,12 +154,29 @@ public:
 	}
 
 };
+inline void Limb::takeDamage(int d) {
+	if (armor > armorDamage) {
+		armorDamage += d;
+		if (armorDamage > armor) {
+			structureDamage = armorDamage - armor;
+			armorDamage = armor;
+		}
+	}
+	else {
+		structureDamage += d;
+	}
+
+	cout << "You dealt " << d << " damage" << endl;
+	if (structureDamage >= structure) {
+		isDestroyed = true;
+	}
+}
+
 class Mech {
 private:
-	int walkSpeed =0;
+	int walkSpeed;
 	int heat;
 	int weight;
-	int jumpSpeed; 
 	string image;
 	int amountMovedThisTurn;
 	Limb L[6];
@@ -178,7 +198,8 @@ public:
 	}
 	void destroyMech() 
 	{
-
+		walkSpeed = -1;
+		cout << "Mech Destroyed" << endl;
 	}
 	void melee() 
 	{
@@ -195,6 +216,7 @@ public:
 	string getImage() {
 		return image;
 	}
+	Mech() :walkSpeed(-1), heat(0), weight(0), amountMovedThisTurn(0), image("   ") {};
 	Mech(Limb* l, int m = 0, int w = 0, int h = 0) : walkSpeed(m), weight(w), heat(h) {
 		for (int i = 0; i < 6; ++i) {
 			L[i] = l[i];
@@ -219,4 +241,150 @@ public:
 	}
 };
 
+inline int rollDice()
+{
+	int diceRoll = (rand() % 6) + 1;
+	diceRoll += (rand() % 6) + 1;
+	return diceRoll;
+}
 
+//Weapon w, Heat h, Range r, Enemy Movement EM
+inline int gator(Weapon w, int h, int r, int EM) {
+	// Gunnery
+	int hit = 4;
+	// Attacker Move
+	/*If stood still +0 */
+	// Target Move
+	if (EM == 0) {
+		//Hit stays the same if the target doesn't move
+	}
+	else {
+		//Hit advances every two tiles of movement after the first
+		hit = hit + ((EM - 1) / 2);
+	}
+	// Other
+	if (h < 8) {
+		hit += 0;
+	}
+	else if (h < 13) {
+		hit += 1;
+	}
+	else if (h < 17) {
+		hit += 2;
+	}
+	else if (h < 24) {
+		hit += 3;
+	}
+	else {
+		hit += 4;
+	}
+	// Range
+	if (r <= w.getrange() / 3) {
+		hit += 0;
+	}
+	else if (r <= w.getrange() * 2 / 3) {
+		hit += 2;
+	}
+	else if (r <= w.getrange()) {
+		hit += 4;
+	}
+	else {
+		hit = 13; //Some arbitrarly high number to make a shot impossible.
+	}
+	return hit;
+}
+
+
+template <class T>
+void Mech::fireWeapon(T& targetSquare) {
+	//Pick a target
+	Mech& Enemy = targetSquare.getHex().getMech();
+	//Get weapons available and pack them into a vector
+	std::vector<Weapon*> weaponsAvailable;
+	for (int i = 0; i < RL; ++i) {
+		if (!L[i].getIsDestroyed()) {
+			for (int j = 0; j < L[i].getWeaponCount(); ++j) {
+				Weapon* weapon = L[i].getWeapon(j);
+				// This line checks that the weapon is not a null pointer, and that it can fire (has ammo)
+				if (weapon && weapon->getCanFire()) {
+					weaponsAvailable.push_back(weapon);
+				}
+			}
+		}
+	}
+
+	//Pick a weapon (would be nice if displayed hit chance)	
+	int weaponSelection = -1; // -1 to initizalize to some number that won't break anything
+	std::vector<Weapon*> weaponsSelected;
+	do {
+		//Auto exits the loop when the user runs out of weapons
+		if (weaponsAvailable.size() == 0) {
+			break;
+		}
+		for (int i = 0; i < weaponsAvailable.size(); ++i) {
+			std::cout << i + 1 << ". " << *weaponsAvailable[i];
+		}
+		std::cout << "Select a weapon to fire or 0 to confirm" << std::endl;
+		std::cin >> weaponSelection;
+
+		// If the user picks a valid number, add it to the weapons selected vector and remove it from the weapons available vector
+		// There is some index adjusting that needed to be done on weaponSelection.
+		if (weaponSelection > 0 && weaponSelection <= weaponsAvailable.size())
+		{
+			weaponsSelected.push_back(weaponsAvailable[weaponSelection - 1]);
+			weaponsAvailable.erase(weaponsAvailable.begin() + weaponSelection - 1);
+		}
+	} while (weaponSelection != 0);
+
+	//Remove Ammo
+	for (int i = 0; i < weaponsSelected.size(); ++i) {
+		weaponsSelected[i]->removeAmmo();
+	}
+
+	//Roll Dice for each one and get damage
+	std::vector<int> weaponDamage;
+	int x = targetSquare.getX() + targetSquare.getY(); // test code
+	for (int i = 0; i < weaponsSelected.size(); ++i) {
+		int result = rollDice();
+		cout << "You rolled a " << result << " to hit" << endl;
+		if (result >= gator(*weaponsSelected[i], heat, x, targetSquare.getHex().getMech().getAmountMoved())) {
+			weaponDamage.push_back(weaponsSelected[i]->getDamage());
+		}
+	}
+	//Get hit location
+	for (int i = 0; i < weaponDamage.size(); ++i) {
+		int hitLocationDice = rollDice();
+		if (hitLocationDice == 12) {
+			cout << "You Hit the Head!" << endl;
+			Enemy.L[H].takeDamage(weaponDamage[i]);
+			if (Enemy.L[H].getIsDestroyed()) 
+			{
+				Enemy.destroyMech();
+			}
+		}
+		else if (hitLocationDice == 10 || hitLocationDice == 11) {
+			cout << "You Hit the Left Arm" << endl;
+			Enemy.L[LA].takeDamage(weaponDamage[i]);
+		}
+		else if (hitLocationDice == 9) {
+			cout << "You Hit the Left Leg" << endl;
+			Enemy.L[LL].takeDamage(weaponDamage[i]);
+		}
+		else if (hitLocationDice == 5) {
+			cout << "You Hit the Right Leg" << endl;
+			Enemy.L[RL].takeDamage(weaponDamage[i]);
+		}
+		else if (hitLocationDice == 3 || hitLocationDice == 4) {
+			cout << "You Hit the Right Arm" << endl;
+			Enemy.L[RA].takeDamage(weaponDamage[i]);
+		}
+		else {
+			cout << "You Hit the Torso" << endl;
+			Enemy.L[CT].takeDamage(weaponDamage[i]);
+			if (Enemy.L[CT].getIsDestroyed())
+			{
+				Enemy.destroyMech();
+			}
+		}
+	}
+}
