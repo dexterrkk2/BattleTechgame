@@ -7,12 +7,11 @@ using std::ostream;
 class Hex 
 {
 private:
-	Hex* pointingTo;
 	Mech& mech;
 	int color; 
 public: 
 	//sets what the mech is pointing to
-	void Rotate(Hex& hex);
+	/*void Rotate(Hex& hex);*/
 	//returns mech
 	Mech getMech() 
 	{
@@ -45,7 +44,6 @@ public:
 	//constructs hex
 	Hex(Mech& mech): mech(mech)
 	{
-		pointingTo = this;
 		color = FOREGROUND_BLUE;
 	}
 	//returns the mech id so it can be printed on hexes
@@ -54,10 +52,10 @@ public:
 		return mech.getImage();
 	}
 	//returns where this hex is pointing towards
-	Hex* getPointingTo() 
+	/*Hex getPointingTo() 
 	{
 		return pointingTo;
-	}
+	}*/
 	//sets color of hex
 	void setColor(int i) 
 	{
@@ -112,7 +110,7 @@ public:
 	//sets what hex the hex it has is pointing to in memory
 	void setPointingTo(Hex& hex) 
 	{
-		hex.Rotate(hex);
+		/*hex.Rotate(hex);*/
 	}
 	//returns the hex referenced by this class
 	Hex& getHex() 

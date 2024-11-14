@@ -21,11 +21,11 @@ void Map::drawGrid(int sizeX, int sizeY, vector<vector<DrawnHex>> &drawnHex)
             if (i > 0) 
             {
                 //sets hexes to point at the hexes below them
-                drawnHex[i][j].setPointingTo(drawnHex[i - 1][j].getHex());
+                //drawnHex[i][j].setPointingTo(drawnHex[i - 1][j].getHex());
             }
             if (i == j - 1) {
                 //sets the hexes at 0 to point at the row above it
-                drawnHex[0][j].setPointingTo(drawnHex[1][j].getHex());
+                //drawnHex[0][j].setPointingTo(drawnHex[1][j].getHex());
             }
 		}
        

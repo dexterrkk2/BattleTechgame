@@ -6,6 +6,7 @@ using std::cin;
 #include "Map.h";
 #include "Hex.h";
 #include "Player.h"
+#include "Mech.h"
 //sets the size of the grid
 const int sizex = 7;
 const int sizey = 12;
@@ -159,16 +160,19 @@ int main()
 	//sets the size of the hex 
 	vector<vector<Hex>> hexes;
 	Limb parts[6];
+	Mech blankMech;
+	Hex blankHex(blankMech);
 	//creates a vector of columns and then adds it to a vector to make rows
 	for (int i = 0; i < sizex; i++)
 	{
 		vector<Hex>cols;
 		for (int j = 0; j < sizey; j++)
 		{
-			cols.push_back(*new Hex(*new Mech(parts)));
+			cols.push_back(*new Hex(blankMech));
 		}
 		hexes.push_back(cols);
 	}
+	cout << "not here" << endl;
 	Mech mech(parts);
 	//creates enemy Mech
 	Mech enemyMech(parts);
