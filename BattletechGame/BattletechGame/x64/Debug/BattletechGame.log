@@ -1,11 +1,13 @@
-﻿  Battletech.cpp
-C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(6,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+﻿  TestFileIoCode.cpp
+  Battletech.cpp
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(6,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   (compiling source file 'Battletech.cpp')
   
-C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(102,51): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(163,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(182,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(259,13): warning C4101: 'x': unreferenced local variable
-  BattletechGame.vcxproj -> C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\x64\Debug\BattletechGame.exe
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(103,51): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(164,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(184,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(261,13): warning C4101: 'x': unreferenced local variable
+  Generating Code...
+  BattletechGame.vcxproj -> C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\x64\Debug\BattletechGame.exe

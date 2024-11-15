@@ -7,6 +7,7 @@ using std::cin;
 #include "Hex.h";
 #include "Player.h"
 #include "Mech.h"
+#include "FileIO.h"
 //sets the size of the grid
 const int sizex = 7;
 const int sizey = 12;
@@ -179,6 +180,7 @@ bool PlayerTurn(Player& player, vector<vector<DrawnHex>> &drawnHex, Map& map)
 
 int main() 
 {
+	inputOutput();
 	srand(time(0));
 	//sets the size of the hex 
 	vector<vector<Hex>> hexes;

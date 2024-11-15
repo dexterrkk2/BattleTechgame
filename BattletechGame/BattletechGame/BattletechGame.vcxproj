@@ -127,11 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\TestFileIoCode.cpp" />
     <ClCompile Include="Battletech.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FileIO.h" />
     <ClInclude Include="Hex.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Mech.h" />
