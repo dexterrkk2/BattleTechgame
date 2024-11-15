@@ -61,6 +61,7 @@ void selectMech(Mech& mech)
 	{
 		mech.setSpeed(2);
 		mech.setImage("Maa");
+		mech = makeMech("Urbanmech.txt");
 	}
 	else
 	{
@@ -68,6 +69,7 @@ void selectMech(Mech& mech)
 		mech.setSpeed(2);
 		//sets the text that will appear on the hex. as well as mech name
 		mech.setImage("FBI");
+		mech = makeMech("Commando.txt");
 	}
 }
 //searches every hex for a hex with a mech on it
@@ -203,11 +205,7 @@ int main()
 	srand(time(0));
 	//sets the size of the hex 
 	vector<vector<Hex>> hexes;
-	Limb parts[6];
-	// TEST CODE
-	AC5Ammo bin1(CT);
-	AC5 weapon1(bin1);
-	parts[CT].addWeapon(weapon1);
+	vector<Limb> parts;
 	Mech blankMech;
 	Hex blankHex(blankMech);
 	blankMech.setImage("   ");
@@ -233,6 +231,16 @@ int main()
 	enemyMech.setImage("FBI");
 	Player player(0, (sizey - 1)/2, Direction::NORTH, mech, playerName);
 	Player enemyPlayer(sizex - 1, (sizey - 1) / 2, Direction::NORTH, enemyMech, enemyName);
+	cout << "Which mech would you like? ";
+	/*int choices = getIntRange(0, 2);
+	if (choices == 1)
+	{
+		mech = makeMech("Urbanmech.txt");
+	}
+	else
+	{
+		mech = makeMech("Commando.txt");
+	}*/
 	selectMech(mech);
 	selectMech(enemyMech);
 	while (enemyPlayer.getMech().getImage() == player.getMech().getImage()) 

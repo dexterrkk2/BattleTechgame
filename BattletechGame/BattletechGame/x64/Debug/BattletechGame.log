@@ -4,8 +4,15 @@ C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\
   (compiling source file 'Battletech.cpp')
   
 C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(122,51): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(183,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(203,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(302,13): warning C4101: 'x': unreferenced local variable
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(124,51): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(185,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(205,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(293,13): warning C4101: 'x': unreferenced local variable
+  Map.cpp
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Map.cpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Map.cpp')
+  
+  Player.cpp
+  Generating Code...
   BattletechGame.vcxproj -> C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\x64\Debug\BattletechGame.exe

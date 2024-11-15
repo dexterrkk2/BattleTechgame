@@ -1,11 +1,19 @@
 #pragma once
+
 #include <iostream>
 #include <string>
-#include<vector>
+#include <vector>
+#include <regex>
+#include "FileIO.h"
+
 using std::cout;
 using std::endl;
 using std::string;
 using std::cin;
+using std::vector;
+using std::regex;
+using std::smatch;
+using std::array;
 
 enum forMech {
 	H, //Head 
@@ -111,7 +119,7 @@ private:
 	int armor;
 	int structure;
 	const static int maxWeapons = 6;
-	Weapon* weapons[maxWeapons];
+	Weapon* weapons[maxWeapons]{};
 	int weaponCount;
 	bool isDestroyed;
 public:
@@ -147,6 +155,15 @@ public:
 	}
 	void takeDamage(int d);
 	Limb(int a = 0, int struc = 1, bool d = false, int c = 0) : armor(a), structure(struc), isDestroyed(d), weaponCount(c) {}
+	Limb(const Limb& old) {
+		armor = old.armor;
+		structure = old.structure;
+		isDestroyed = old.isDestroyed;
+		weaponCount = old.weaponCount;
+		for (int i = 0; i < maxWeapons; ++i) {
+			weapons[i] = old.weapons[i];
+		}
+	}
 	static friend std::ostream& operator<<(std::ostream& os, const Limb& l) {
 		os << "The armor of this limb is " << l.armor << std::endl;
 		os << "The internal structure of this limb is " << l.structure << std::endl;
@@ -179,7 +196,7 @@ private:
 	int weight;
 	string image;
 	int amountMovedThisTurn;
-	Limb L[6];
+	vector<Limb> L;
 public:
 	//uses a generic to represent a drawn hex, because hex requires mech to be defined
 	template <class T>
@@ -188,22 +205,10 @@ public:
 	{
 		return walkSpeed;
 	}
-	void run() 
-	{
-
-	}
-	void jump() 
-	{
-
-	}
 	void destroyMech() 
 	{
 		walkSpeed = -1;
 		cout << "Mech Destroyed" << endl;
-	}
-	void melee() 
-	{
-
 	}
 	void setSpeed(int walkSpeed) 
 	{
@@ -216,17 +221,22 @@ public:
 	string getImage() {
 		return image;
 	}
-	Mech() :walkSpeed(-1), heat(0), weight(0), amountMovedThisTurn(0), image("   ") {};
-	Mech(Limb* l, int m = 0, int w = 0, int h = 0) : walkSpeed(m), weight(w), heat(h) {
-		for (int i = 0; i < 6; ++i) {
-			L[i] = l[i];
-		}
-		walkSpeed = m;
-		weight = w;
-		heat = h;
-		amountMovedThisTurn = 0;
-		string image = "   ";
+	Mech() :walkSpeed(-1), heat(0), weight(0), amountMovedThisTurn(0), image("   ") {
+	};
+	Mech(vector<Limb>& l, int m = 0, int w = 0, int h = 0) : walkSpeed(m), weight(w), heat(h), amountMovedThisTurn(0),image("   ") {
+		L = l;
+		
 	}
+	Mech(const Mech& old) {
+		walkSpeed = old.walkSpeed;
+		weight = old.weight;
+		heat = old.heat;
+		amountMovedThisTurn = old.amountMovedThisTurn;
+		image = old.image;
+		L = old.L;
+				
+	}
+	
 	void setImage(string image) 
 	{
 		this->image = image;
@@ -239,6 +249,7 @@ public:
 	{
 		return amountMovedThisTurn;
 	}
+
 };
 
 inline int rollDice()
@@ -387,4 +398,99 @@ void Mech::fireWeapon(T& targetSquare) {
 			}
 		}
 	}
+}
+// Files MUST be in the following format
+// Image
+// Walkspeed
+// Weight
+// Limb armor (H=1,CT=2,LA=3,RA=4,LL=5,Rl=6)
+// Limb Structure ((H,CT,LA,RA,LL,Rl)
+// Ammo type
+// Ammo location
+// Weapon Type
+// Weapon Location
+// Ammo and Weapons must be in the same order
+inline Mech makeMech(string fileName) {
+	vector<string> MP = readData(fileName); //MP = Mech Pieces
+	//extracts all parts from the text file
+	string ID = MP[0];
+	int move = stoi(MP[1]);
+	int weight = stoi(MP[2]);
+	vector<Limb> parts;
+	Limb head(stoi(MP[3]), stoi(MP[4]));
+	parts.push_back(head);
+	Limb torso(stoi(MP[5]), stoi(MP[6]));
+	parts.push_back(torso);
+	Limb leftArm(stoi(MP[7]), stoi(MP[8]));
+	parts.push_back(leftArm);
+	Limb rightArm(stoi(MP[9]), stoi(MP[10]));
+	parts.push_back(rightArm);
+	Limb leftLeg(stoi(MP[11]), stoi(MP[12]));
+	parts.push_back(leftLeg);
+	Limb rightLeg(stoi(MP[13]), stoi(MP[14]));
+	parts.push_back(rightLeg);
+
+	//Search for, and build Ammo and weapons
+	//Hunts for the # in AC#Ammo and AC#
+	regex ammoRegex(R"(AC(\d+)Ammo)");
+	regex weaponRegex(R"(AC(\d+))");
+	vector<Ammo> bins{};
+	int j = 0; // Counting what ammo bin goes to what weapon
+	// i = 15 because the weapon search always begins on line 15.
+	for (int i = 15; i < MP.size(); ++i) {
+		smatch match;
+		if (std::regex_search(MP[i], match, ammoRegex)) {
+			int type = stoi(match[1]);
+			int location = stoi(MP[i+1]);
+
+			if (type == 2) {
+				AC2Ammo tempAmmo(location);
+				bins.push_back(tempAmmo);
+			}
+			else if (type == 5) {
+				AC5Ammo tempAmmo(location);
+				bins.push_back(tempAmmo);
+
+			}
+			else if (type == 10) {
+				AC10Ammo tempAmmo(location);
+				bins.push_back(tempAmmo);
+			}
+			else if (type == 20) {
+				AC20Ammo tempAmmo(location);
+				bins.push_back(tempAmmo);
+			}
+		}
+		// Looks for weapons. All ammo MUST be defined first or bad things happen
+		else if (std::regex_search(MP[i], match, weaponRegex)) {
+			int type = stoi(match[1]);
+			int location = stoi(MP[i+1]);
+
+			if (type == 2) {
+				AC2 temp(bins[j]);
+				parts[location].addWeapon(temp);
+				++j;
+			}
+			else if (type == 5) {
+				AC5 temp(bins[j]);
+				parts[location].addWeapon(temp);
+				++j;
+			}
+			else if (type == 10) {
+				AC10 temp(bins[j]);
+				parts[location].addWeapon(temp);
+				++j;
+			}
+			else if (type == 20) {
+				AC20 temp(bins[j]);
+				parts[location].addWeapon(temp);
+				++j;
+			}
+		}
+
+	}
+
+	Mech finishedMech(parts, move, weight);
+	finishedMech.setImage(ID);
+	return finishedMech;
 }
