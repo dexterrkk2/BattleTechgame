@@ -28,7 +28,6 @@ void Map::drawGrid(int sizeX, int sizeY, vector<vector<DrawnHex>> &drawnHex)
                 //drawnHex[0][j].setPointingTo(drawnHex[1][j].getHex());
             }
 		}
-       
 		//cout << endl;
 	}
 }
@@ -117,7 +116,8 @@ void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
                 cout << endl;
             }
             //prints the lower middle part of the hexagon
-            else {
+            else 
+            {
                 //takes in output
                 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
                 //prints for the number of hexagons in column

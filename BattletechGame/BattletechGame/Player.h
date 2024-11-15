@@ -84,4 +84,8 @@ public:
     {
         return mech;
     }
+    void setMech(Mech& mech) 
+    {
+        this->mech = mech;
+    }
 };

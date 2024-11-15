@@ -11,6 +11,7 @@ using std::cin;
 //sets the size of the grid
 const int sizex = 7;
 const int sizey = 12;
+
 string getPlayerName() 
 {
 	string temp;
@@ -50,7 +51,25 @@ int getIntRange(int min, int max)
 	}
 	return option;
 }
+void selectMech(Mech& mech)
+{
 
+	//creates enemy Mech
+	cout << "Which mech would you like? ";
+	int choices = getIntRange(0, 2);
+	if (choices == 1)
+	{
+		mech.setSpeed(2);
+		mech.setImage("Maa");
+	}
+	else
+	{
+		//mechs default to -1 so we know if it is active or not
+		mech.setSpeed(2);
+		//sets the text that will appear on the hex. as well as mech name
+		mech.setImage("FBI");
+	}
+}
 //searches every hex for a hex with a mech on it
 vector<DrawnHex> FindTarget(vector<vector<DrawnHex>>& grid, Mech playerMech)
 {
@@ -82,7 +101,7 @@ bool PlayerTurn(Player& player, vector<vector<DrawnHex>> &drawnHex, Map& map)
 	cout << "it's your turn " << player.getName() << endl;
 	int amountMoved = 0;
 	//allows player to move equal to their speed every turn
-	for(int i=0; i< player.getMech().getSpeed(); i++)
+	for(int i=0; i< player.getMech().walk(); i++)
 	{
 		//gets the places the player can move
 		vector<DrawnHex> movePositions = player.CanMoveTo(drawnHex[player.getRow()][player.getCol()], drawnHex);
@@ -180,17 +199,15 @@ bool PlayerTurn(Player& player, vector<vector<DrawnHex>> &drawnHex, Map& map)
 
 int main() 
 {
-	inputOutput();
+	//inputOutput();
 	srand(time(0));
 	//sets the size of the hex 
 	vector<vector<Hex>> hexes;
 	Limb parts[6];
-	
 	// TEST CODE
 	AC5Ammo bin1(CT);
 	AC5 weapon1(bin1);
 	parts[CT].addWeapon(weapon1);
-
 	Mech blankMech;
 	Hex blankHex(blankMech);
 	blankMech.setImage("   ");
@@ -205,17 +222,24 @@ int main()
 		hexes.push_back(cols);
 	}
 	///cout << "not here" << endl;
+	string playerName = getPlayerName();
+	string enemyName = getPlayerName();
 	Mech mech(parts);
-	//creates enemy Mech
-	Mech enemyMech(parts);
-	//mechs default to -1 so we know if it is active or not
 	mech.setSpeed(2);
+	mech.setImage("Maa");
+	Mech enemyMech(parts);
 	enemyMech.setSpeed(2);
 	//sets the text that will appear on the hex. as well as mech name
-	mech.setImage("Maa");
 	enemyMech.setImage("FBI");
-	Player player(0, (sizey - 1)/2, Direction::NORTH, mech, getPlayerName());
-	Player enemyPlayer(sizex - 1, (sizey - 1)/2, Direction::NORTH, enemyMech, getPlayerName());
+	Player player(0, (sizey - 1)/2, Direction::NORTH, mech, playerName);
+	Player enemyPlayer(sizex - 1, (sizey - 1) / 2, Direction::NORTH, enemyMech, enemyName);
+	selectMech(mech);
+	selectMech(enemyMech);
+	while (enemyPlayer.getMech().getImage() == player.getMech().getImage()) 
+	{
+		cout << "Mechs cannot be the same" << endl;
+		selectMech(enemyPlayer.getMech());
+	}
 	//constructs player and sets their direction to north
 	//sets what hex the player is on and their mech to the tile
 	hexes[player.getRow()][player.getCol()].setMech(player.getMech());

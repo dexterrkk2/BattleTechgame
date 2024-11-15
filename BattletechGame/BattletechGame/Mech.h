@@ -306,7 +306,7 @@ void Mech::fireWeapon(T& targetSquare) {
 			for (int j = 0; j < L[i].getWeaponCount(); ++j) {
 				Weapon* weapon = L[i].getWeapon(j);
 				// This line checks that the weapon is not a null pointer, and that it can fire (has ammo)
-				if (weapon && weapon->getCanFire()) {
+			if (weapon && weapon->getCanFire()) {
 					weaponsAvailable.push_back(weapon);
 				}
 			}
