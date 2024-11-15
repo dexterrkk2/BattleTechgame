@@ -8,6 +8,7 @@ using std::cin;
 #include "Player.h"
 #include "Mech.h"
 #include "FileIO.h"
+
 //sets the size of the grid
 const int sizex = 7;
 const int sizey = 12;
@@ -82,7 +83,7 @@ bool PlayerTurn(Player& player, vector<vector<DrawnHex>> &drawnHex, Map& map)
 	cout << "it's your turn " << player.getName() << endl;
 	int amountMoved = 0;
 	//allows player to move equal to their speed every turn
-	for(int i=0; i< player.getMech().getSpeed(); i++)
+	for(int i=0; i< player.getMech().walk(); i++)
 	{
 		//gets the places the player can move
 		vector<DrawnHex> movePositions = player.CanMoveTo(drawnHex[player.getRow()][player.getCol()], drawnHex);
@@ -180,7 +181,8 @@ bool PlayerTurn(Player& player, vector<vector<DrawnHex>> &drawnHex, Map& map)
 
 int main() 
 {
-	inputOutput();
+	Mech testMech = makeMech("urbanMech.txt");
+	//inputOutput();
 	srand(time(0));
 	//sets the size of the hex 
 	vector<vector<Hex>> hexes;
