@@ -19,177 +19,22 @@ void selectMech(Mech& mech)
 	int choices = getIntRange(0, 2);
 	if (choices == 1)
 	{
-<<<<<<< Updated upstream
-		mech.setSpeed(2);
-		mech.setImage("Maa");
+		mech = mech.makeMech("Urbanmech.txt");
 	}
 	else
 	{
-		//mechs default to -1 so we know if it is active or not
-		mech.setSpeed(2);
-		//sets the text that will appear on the hex. as well as mech name
-		mech.setImage("FBI");
-=======
-		mech = makeMech("Urbanmech.txt");
-	}
-	else
-	{
-		mech = makeMech("Commando.txt");
->>>>>>> Stashed changes
+		mech = mech.makeMech("Commando.txt");
 	}
 }
 //searches every hex for a hex with a mech on it
-vector<DrawnHex> FindTarget(vector<vector<DrawnHex>>& grid, Mech playerMech)
-{
-	vector<DrawnHex> targets;
-	for (int i = 0; i < grid.size(); i++)
-	{
-		for (int j = 0; j < grid[0].size(); j++)
-		{
-			//checks if grid at column i row j has a mech
-			if (grid[i][j].getHex().hasmech())
-			{
-				//checks if mech is the player
-				if (grid[i][j].getHex().getMech().getImage() != playerMech.getImage())
-				{
-					//adds to vector
-					targets.push_back(grid[i][j]);
-				}
-			}
-		}
-	}
-	//returns targets
-	return targets;
-}
-void Turn(Player& player, vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePositions)
-{
-	//lets the player choose left or right to turn
-	cout << "Would you like to turn 1) left or 2) right" << endl;
-	//gets input and makes sure it is in range.
-	int leftOrRight = getIntRange(0, 2);
-	//turns left
-	if (leftOrRight == 1)
-	{
-		player.turnLeft();
-	}
-	//turns right
-	else
-	{
-		player.turnRight();
-	}
-	//changes the hexes beck to blue after player selected option
-	for (int i = 0; i < movePositions.size(); i++)
-	{
-		drawnHex[movePositions[i].getX()][movePositions[i].getY()].setColor(FOREGROUND_BLUE);
-	}
-}
-void Move(Player& player, vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePositions, int option)
-{
-	//cout << "Moved" << endl;
-			//removes mech off the current tile
-	int previousX = player.getRow();
-	int previousY = player.getCol();
-	//changes the hexes beck to blue after player selected option
-	//moves the player to the hex
-	player.SetPostiiton(movePositions[option - 1].getX(), (movePositions[option - 1].getY()));
-	//sets the mech to the hex tile
-	drawnHex[player.getRow()][player.getCol()].getHex().setMech(player.getMech());
-	drawnHex[previousX][previousY].getHex().eraseMech();
-	//updates grid
-}
-void fireWeapon(Player& player, vector<vector<DrawnHex>>& drawnHex)
-{
-	vector<DrawnHex> targets = FindTarget(drawnHex, player.getMech());
-	//asks the player if they would like to attack them.
-	for (int i = 0; i < targets.size(); i++)
-	{
-		cout << "Would you like to attack " << i + 1 << ": " << targets[i].getImage() << " ";
-	}
-	//gets an input from the screen equal to number of targers
-	int fireAt = getIntRange(0, targets.size());
-	//fires at selected target
-	player.getMech().fireWeapon(drawnHex[targets[fireAt - 1].getX()][targets[fireAt - 1].getY()]);
-	if (drawnHex[targets[fireAt - 1].getX()][targets[fireAt - 1].getY()].getHex().getMech().walk() == -1)
-	{
-		drawnHex[targets[fireAt - 1].getX()][targets[fireAt - 1].getY()].getHex().eraseMech();
-	}
 
-}
-bool killedtarget(Player& player, vector<vector<DrawnHex>>& drawnHex) {
-	vector<DrawnHex> targets = FindTarget(drawnHex, player.getMech());
-	if (targets.size() == 0)
-	{
-		return true;
-	}
-	//returns how many times the player has moved for other logic
 
-	return false;
-}
-//takes the map gets where the player can move and lets the player choose to move there, or rotate to move somewhere else.
-void PlayerTurn(Player& player, vector<vector<DrawnHex>>& drawnHex, Map& map)
-{
-	//cout << player.getMech().getImage() << endl;
-	//cout << "Your Walkspeed is " << player.getMech().walk() << endl;
-	cout << "it's your turn " << player.getName() << endl;
-	int amountMoved = 0;
-	//allows player to move equal to their speed every turn
-	for (int i = 0; i < player.getMech().walk(); i++)
-	{
-		//gets the places the player can move
-		vector<DrawnHex> movePositions = player.CanMoveTo(drawnHex[player.getRow()][player.getCol()], drawnHex);
-		//sets the places the player can move to green
-		for (int i = 0; i < movePositions.size(); i++)
-		{
-			drawnHex[movePositions[i].getX()][movePositions[i].getY()].setColor(FOREGROUND_GREEN);
-		}
-		//prints the hex grid
-		map.printHex(sizey, sizex, drawnHex);
-		//changes them back to blue after it's printed
-		for (int i = 0; i < movePositions.size(); i++)
-		{
-			drawnHex[movePositions[i].getX()][movePositions[i].getY()].setColor(FOREGROUND_BLUE);
-		}
-		//prints the options of where to move
-		for (int i = 0; i < movePositions.size(); i++)
-		{
-			cout << "Would you " << i + 1 << " move to : " << movePositions[i] << " ";
-		}
-		cout << movePositions.size() + 1 << " rotate ? ";
-		//gets input
-		int option = getIntRange(0, movePositions.size() + 1);
-		//throws an exception if the player selects an option not there, and gets past the while loop reseting it.
-		if (option > movePositions.size() + 1)
-		{
-			throw(option);
-		}
-		//houses the rotate logic
-		if (option == movePositions.size() + 1)
-		{
-			Turn(player, drawnHex, movePositions);
-		}
-		//houses the move logic
-		else
-		{
-			Move(player, drawnHex, movePositions, option);
-			amountMoved++;
-		}
-	}
-	//firing code
-	player.setAmountMoved(amountMoved);
-	fireWeapon(player, drawnHex);
-	//gets enemy mechs
-}
 int main() 
 {
 	//inputOutput();
 	srand(time(0));
 	//sets the size of the hex 
 	vector<vector<Hex>> hexes;
-	Limb parts[6];
-	// TEST CODE
-	AC5Ammo bin1(CT);
-	AC5 weapon1(bin1);
-	parts[CT].addWeapon(weapon1);
 	Mech blankMech;
 	Hex blankHex(blankMech);
 	//blankMech.setImage("   ");
@@ -206,12 +51,10 @@ int main()
 	///cout << "not here" << endl;
 	string playerName = getPlayerName();
 	string enemyName = getPlayerName();
-	Mech mech(parts);
-	Mech enemyMech(parts);
-	Player player(0, (sizey - 1)/2, Direction::NORTH, mech, playerName);
-	Player enemyPlayer(sizex - 1, (sizey - 1) / 2, Direction::NORTH, enemyMech, enemyName);
-<<<<<<< Updated upstream
-=======
+	Mech mech;
+	Mech enemyMech;
+	Player player(0, (sizey - 1), Direction::NORTH, mech, playerName);
+	Player enemyPlayer(sizex - 1, (sizey - 1), Direction::NORTH, enemyMech, enemyName);
 	/*cout << "Which mech would you like? ";*/
 	/*int choices = getIntRange(0, 2);
 	if (choices == 1)
@@ -222,10 +65,9 @@ int main()
 	{
 		mech = makeMech("Commando.txt");
 	}*/
->>>>>>> Stashed changes
 	selectMech(mech);
 	selectMech(enemyMech);
-	while (enemyPlayer.getMech().getImage() == player.getMech().getImage()) 
+	while (enemyPlayer.getMech().getID() == player.getMech().getID()) 
 	{
 		cout << "Mechs cannot be the same" << endl;
 		selectMech(enemyPlayer.getMech());
@@ -256,15 +98,15 @@ int main()
 		bool turnCheck = false;
 		do
 		{
-			PlayerTurn(player, drawnHex, map);
-			turnCheck = killedtarget(player, drawnHex);
+			player.playerTurn(drawnHex, map, sizex, sizey);
+			turnCheck = player.killedTarget(drawnHex);
 			if (turnCheck == true) 
 			{
 				cout<< player.getName()<<" Won" << endl;
 				break;
 			}
-			PlayerTurn(enemyPlayer, drawnHex, map);
-			turnCheck = killedtarget(enemyPlayer, drawnHex);
+			enemyPlayer.playerTurn(drawnHex, map, sizex, sizey);
+			turnCheck = enemyPlayer.killedTarget(drawnHex);
 			if (turnCheck == true)
 			{
 				cout << "Player: " << enemyPlayer.getName() << " Won" << endl;
@@ -278,6 +120,6 @@ int main()
 		//prints error message
 		cout << "Error: selected an option that doesn't exist" << endl;
 	}
-	//cout << hexes[2][4].getImage() << endl;
+	//cout << hexes[2][4].getID() << endl;
 	return 0;
 }

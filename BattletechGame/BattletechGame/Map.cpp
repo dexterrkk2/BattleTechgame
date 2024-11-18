@@ -36,7 +36,7 @@ string Map::drawHex(DrawnHex& hex, int cordX, int cordY)
     //cout << "Set cords" << endl;
     //cout << cordX << cordY << endl;
     hex.setcords(cordX, cordY);
-	return 	hex.getImage();
+	return 	hex.getID();
 }
 void printUpperHex(int& width) 
 {
@@ -134,7 +134,7 @@ void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
                 for (int c = 0; c < cols; ++c) {
                     //sets output to hex color
                     SetConsoleTextAttribute(hConsole, hex[q][c].getColor());
-                    printLowerHex(5, hex[q][c].getImage());
+                    printLowerHex(5, hex[q][c].getID());
                 }
                 //goes to next line
                 cout << endl;

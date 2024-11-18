@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+using std::string;
 void createFile() 
 {
     std::ofstream outFile("Mechinfo.txt"); // Creates the file
@@ -15,10 +16,10 @@ void createFile()
         std::cerr << "Unable to create file.\n";
     }
 }
-std::vector<std::string> readData() 
+std::vector<std::string> readData(string fileName) 
 {
     // Step 2: Read from the file
-    std::ifstream inFile("Mechinfo.txt"); // Open the file for reading
+    std::ifstream inFile(fileName); // Open the file for reading
     if (!inFile.is_open()) {
         std::cerr << "Unable to open file.\n";
     }
@@ -41,7 +42,4 @@ void printData(std::vector<std::string> mech)
 }
 void inputOutput()
 {
-    createFile();
-    std::vector<std::string> data = readData();
-    printData(data);
 }
