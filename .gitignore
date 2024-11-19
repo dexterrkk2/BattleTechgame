@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+*.ipch
+*.ipch
+BattletechGame/.vs/BattletechGame/v17/ipch/AutoPCH/22e74f422333d5cd/MAP.ipch

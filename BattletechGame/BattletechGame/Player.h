@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
-#include "Hex.h"
+#include "Map.h"
+#include "PlayerInput.h";
+#include "Mech.h"
 using std::vector;
 //defines directions as enums, 0-7
 enum Direction { NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST };
@@ -66,7 +68,7 @@ public:
     //sends how far the player had moved last turn to the mech
     void setAmountMoved(int amountMoved) 
     {
-        mech.setAmountMoved(amountMoved);
+        mech.setMoved(amountMoved);
     }
     int getRow() 
     {
@@ -88,4 +90,9 @@ public:
     {
         this->mech = mech;
     }
+    void playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex, int sizey);
+    void Move(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePositions, int option);
+    void Turn(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePositions);
+    void fireWeapon(vector<vector<DrawnHex>>& drawnHex);
+    bool killedTarget(vector<vector<DrawnHex>>& drawnHex);
 };

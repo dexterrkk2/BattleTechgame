@@ -18,15 +18,15 @@ void Map::drawGrid(int sizeX, int sizeY, vector<vector<DrawnHex>> &drawnHex)
 		{
 			//sets the cords of the hex
             drawHex(drawnHex[i][j], i, j);
-            if (i > 0) 
-            {
-                //sets hexes to point at the hexes below them
-                //drawnHex[i][j].setPointingTo(drawnHex[i - 1][j].getHex());
-            }
-            if (i == j - 1) {
-                //sets the hexes at 0 to point at the row above it
-                //drawnHex[0][j].setPointingTo(drawnHex[1][j].getHex());
-            }
+            //if (i > 0) 
+            //{
+            //    //sets hexes to point at the hexes below them
+            //    //drawnHex[i][j].setPointingTo(drawnHex[i - 1][j].getHex());
+            //}
+            //if (i == j - 1) {
+            //    //sets the hexes at 0 to point at the row above it
+            //    //drawnHex[0][j].setPointingTo(drawnHex[1][j].getHex());
+            //}
 		}
 		//cout << endl;
 	}
@@ -36,9 +36,53 @@ string Map::drawHex(DrawnHex& hex, int cordX, int cordY)
     //cout << "Set cords" << endl;
     //cout << cordX << cordY << endl;
     hex.setcords(cordX, cordY);
-	return 	hex.getImage();
+	return 	hex.getID();
 }
-void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
+void printUpperHex(int& width) 
+{
+    //prints half the spaces needed for spacing
+    for (int j = 0; j < (width / 2) - 2; j++)
+    {
+        cout << " ";
+    }
+    //prints the top of the hexagon
+    cout << "---";
+    //prints the other half of the spaces
+    for (int j = 0; j < (width / 2) - 1; j++)
+    {
+        cout << " ";
+    }
+}
+void printMiddleHex(int& width) 
+{
+    cout << " ";
+    cout << "/";
+    //Width minus spaces printed before and after
+    for (int j = 0; j < (width / 2) - 1; j++)
+    {
+        cout << " ";
+    }
+    cout << "\\" << "  ";
+}
+void printLowerHex(const int& width, string image) 
+{
+    cout << " ";
+    cout << "\\";
+    //prints half the spaces
+    for (int j = 0; j < (width / 4) - 2; j++)
+    {
+        cout << " ";
+    }
+    //gets the image from the mech that lives on the hex code. If none prints three spaces 
+    cout << image;
+    //prints the other half of the spaces
+    for (int j = 0; j < (width / 4) - 2; j++)
+    {
+        cout << " ";
+    }
+    cout << "/" << "  ";
+}
+void Map::printHex(int rows, int cols, vector<vector<DrawnHex>> &hex) {
     // Height and width of each hexagon
     int height = 5; 
     int width = 8;  
@@ -59,40 +103,13 @@ void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
                 {
                     //sets output to the color of the hex from the hex 2d vector
                     SetConsoleTextAttribute(hConsole, hex[q][c].getColor());
-                    //prints half the spaces needed for spacing
-                    for (int j = 0; j < (width / 2) - 2; j++)
-                    {
-                        cout << " ";
-                    }
-                    //prints the top of the hexagon
-                    cout << "---";
-                    //prints the other half of the spaces
-                    for (int j = 0; j < (width / 2) - 1; j++)
-                    {
-                        cout << " ";
-                    }
+                    printUpperHex(width);
                 }
-                //goes to the next line
                 cout << endl;
             }
             //used to print the middle, now just prints nothing to make sure it lines up
-            else if (i % 4 == 2) {
-                //// Print the middle part of hexagons
-                //for (int c = 0; c < cols; ++c) {
-                //    cout<<" ";
-                //    //Width minus spaces printed before and after
-                //    for (int j = 0; j < (width/4)-1; j++)
-                //    {
-                //        cout << " ";
-                //    }
-                //    cout << hex[c].getImage();
-                //    for (int j = 0; j < (width / 4)-1; j++)
-                //    {
-                //        cout << " ";
-                //    }
-                //    cout << " " << " ";
-                //}
-                //cout << endl;
+            else if (i % 4 == 2) 
+            {
             }
             //prints the upper middle part of the hexagon
             else if (i % 4 == 1)
@@ -104,14 +121,7 @@ void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
                 {
                     //sets output to hex color
                     SetConsoleTextAttribute(hConsole, hex[q][c].getColor());
-                    cout << " ";
-                    cout << "/";
-                    //Width minus spaces printed before and after
-                    for (int j = 0; j < (width / 2) - 1; j++)
-                    {
-                        cout << " ";
-                    }
-                    cout << "\\" << "  ";
+                    printMiddleHex(width);
                 }
                 cout << endl;
             }
@@ -124,21 +134,7 @@ void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
                 for (int c = 0; c < cols; ++c) {
                     //sets output to hex color
                     SetConsoleTextAttribute(hConsole, hex[q][c].getColor());
-                    cout << " ";
-                    cout << "\\";
-                    //prints half the spaces
-                    for (int j = 0; j < (width / 4) - 2; j++)
-                    {
-                        cout << " ";
-                    }
-                    //gets the image from the mech that lives on the hex code. If none prints three spaces 
-                    cout << hex[q][c].getImage();
-                    //prints the other half of the spaces
-                    for (int j = 0; j < (width / 4) - 2; j++)
-                    {
-                        cout << " ";
-                    }
-                    cout << "/" << "  ";
+                    printLowerHex(5, hex[q][c].getID());
                 }
                 //goes to next line
                 cout << endl;

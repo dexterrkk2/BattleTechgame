@@ -23,7 +23,7 @@ public:
 		this->mech = Mech();
 		//foreground blue is defined as an int in memory. 
 		color = FOREGROUND_BLUE;
-		//cout<<getImage();
+		//cout<<getID();
 	}
 	//changed color to red when this hex has a mech
 	void setMech(Mech& mech) 
@@ -31,11 +31,11 @@ public:
 		this->mech = mech;
 		//foreground red is defined as an int in memory. 
 		color = FOREGROUND_RED;
-		//cout << getImage() << endl;
+		//cout << getID() << endl;
 	}
 	//checks if this mech is active. a mech with a negative movespeed is not active
 	bool hasmech() {
-		if (mech.walk()>0)
+		if (mech.getWalk()>0)
 		{
 			return true;
 		}
@@ -47,9 +47,9 @@ public:
 		color = FOREGROUND_BLUE;
 	}
 	//returns the mech id so it can be printed on hexes
-	string getImage() 
+	string getID() 
 	{
-		return mech.getImage();
+		return mech.getID();
 	}
 	//returns where this hex is pointing towards
 	/*Hex getPointingTo() 
@@ -87,9 +87,9 @@ public:
 		
 	}
 	//returns the image on the mech attached to the hex
-	string getImage() 
+	string getID() 
 	{
-		return hex.getImage();
+		return hex.getID();
 	}
 	//sets the cords of this hex, to where it is on the grid
 	void setcords(int x, int y)
