@@ -82,7 +82,7 @@ void printLowerHex(const int& width, string image)
     }
     cout << "/" << "  ";
 }
-void Map::printHex(int cols,int rows,  vector<vector<DrawnHex>> &hex) {
+void Map::printHex(int rows, int cols, vector<vector<DrawnHex>> &hex) {
     // Height and width of each hexagon
     int height = 5; 
     int width = 8;  

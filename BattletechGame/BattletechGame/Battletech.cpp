@@ -53,8 +53,8 @@ int main()
 	string enemyName = getPlayerName();
 	Mech mech;
 	Mech enemyMech;
-	Player player(0, (sizey - 1), Direction::NORTH, mech, playerName);
-	Player enemyPlayer(sizex - 1, (sizey - 1), Direction::NORTH, enemyMech, enemyName);
+	Player player(0, (sizey - 1)/2, Direction::NORTH, mech, playerName);
+	Player enemyPlayer((sizex - 1), (sizey - 1)/2, Direction::NORTH, enemyMech, enemyName);
 	/*cout << "Which mech would you like? ";*/
 	/*int choices = getIntRange(0, 2);
 	if (choices == 1)

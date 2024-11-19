@@ -162,7 +162,7 @@ bool Player::killedTarget(vector<vector<DrawnHex>>& drawnHex) {
 	return false;
 }
 //takes the map gets where the player can move and lets the player choose to move there, or rotate to move somewhere else.
-void Player::playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizey, int sizex)
+void Player::playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex, int sizey)
 {
 	//cout << player.getMech().getID() << endl;
 	//cout << "Your Walkspeed is " << player.getMech().walk() << endl;
@@ -179,7 +179,7 @@ void Player::playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizey,
 			drawnHex[movePositions[i].getX()][movePositions[i].getY()].setColor(FOREGROUND_GREEN);
 		}
 		//prints the hex grid
-		map.printHex(sizey, sizex, drawnHex);
+		map.printHex(sizex, sizey, drawnHex);
 		//changes them back to blue after it's printed
 		for (int i = 0; i < movePositions.size(); i++)
 		{
