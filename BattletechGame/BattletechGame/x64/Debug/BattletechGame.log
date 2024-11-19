@@ -1,25 +1,39 @@
 ﻿  Battletech.cpp
-D:\Projects\School Projects\GenEd\CS 225\project\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(6,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\Projects\School Projects\GenEd\CS 225\project\BattleTechgame\BattletechGame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\Projects\School Projects\GenEd\CS 225\project\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\Projects\School Projects\GenEd\CS 225\project\BattleTechgame\BattletechGame\BattletechGame\Player.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\Projects\School Projects\GenEd\CS 225\project\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(35,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\Projects\School Projects\GenEd\CS 225\project\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(118,13): warning C4101: 'x': unreferenced local variable
+C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(6,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Battletech.cpp')
+  
+C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Player.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Battletech.cpp')
+  
+C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(35,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Battletech.cpp(118,13): warning C4101: 'x': unreferenced local variable
+  Map.cpp
+C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Map.cpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Map.cpp')
+  
   Player.cpp
-D:\Projects\School Projects\GenEd\CS 225\project\BattleTechgame\BattletechGame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\Projects\School Projects\GenEd\CS 225\project\BattleTechgame\BattletechGame\BattletechGame\Player.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\Projects\School Projects\GenEd\CS 225\project\BattleTechgame\BattletechGame\BattletechGame\Player.cpp(145,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\Projects\School Projects\GenEd\CS 225\project\BattleTechgame\BattletechGame\BattletechGame\Player.cpp(195,52): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\Projects\School Projects\GenEd\CS 225\project\BattleTechgame\BattletechGame\BattletechGame\Mech.h(287,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Player.cpp')
+  
+C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Player.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Player.cpp')
+  
+C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Player.cpp(145,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Player.cpp(195,52): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Mech.h(297,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Player.cpp')
+      C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Mech.h(297,13):
+      the template instantiation context (the oldest one first) is
+          C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\BattletechGame\Player.cpp(147,7):
+          see reference to function template instantiation 'void Mech::fireWeapon<_Ty>(T &)' being compiled
+          with
+          [
+              _Ty=DrawnHex,
+              T=DrawnHex
+          ]
+  
   Generating Code...
-Map.obj : error LNK2005: "int __cdecl gator(class Weapon,int,int,int)" (?gator@@YAHVWeapon@@HHH@Z) already defined in Battletech.obj
-Map.obj : error LNK2005: "public: class Mech __cdecl Mech::makeMech(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?makeMech@Mech@@QEAA?AV1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) already defined in Battletech.obj
-Map.obj : error LNK2005: "int __cdecl rollDice(void)" (?rollDice@@YAHXZ) already defined in Battletech.obj
-Player.obj : error LNK2005: "int __cdecl gator(class Weapon,int,int,int)" (?gator@@YAHVWeapon@@HHH@Z) already defined in Battletech.obj
-Player.obj : error LNK2005: "int __cdecl getInt(void)" (?getInt@@YAHXZ) already defined in Battletech.obj
-Player.obj : error LNK2005: "int __cdecl getIntRange(int,int)" (?getIntRange@@YAHHH@Z) already defined in Battletech.obj
-Player.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl getPlayerName(void)" (?getPlayerName@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ) already defined in Battletech.obj
-Player.obj : error LNK2005: "public: class Mech __cdecl Mech::makeMech(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?makeMech@Mech@@QEAA?AV1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) already defined in Battletech.obj
-Player.obj : error LNK2005: "int __cdecl randomNumber(int)" (?randomNumber@@YAHH@Z) already defined in Battletech.obj
-Player.obj : error LNK2005: "int __cdecl rollDice(void)" (?rollDice@@YAHXZ) already defined in Battletech.obj
-D:\Projects\School Projects\GenEd\CS 225\project\BattleTechgame\BattletechGame\x64\Debug\BattletechGame.exe : fatal error LNK1169: one or more multiply defined symbols found
+  BattletechGame.vcxproj -> C:\Users\ssami\source\repos\BattleTechgame\BattletechGame\x64\Debug\BattletechGame.exe

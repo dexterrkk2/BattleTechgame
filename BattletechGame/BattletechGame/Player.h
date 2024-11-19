@@ -2,6 +2,7 @@
 #include <vector>
 #include "Map.h"
 #include "PlayerInput.h";
+#include "Mech.h"
 using std::vector;
 //defines directions as enums, 0-7
 enum Direction { NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST };

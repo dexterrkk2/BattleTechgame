@@ -13,6 +13,15 @@ using std::regex;
 using std::smatch;
 using std::ostream;
 
+enum forMech {
+	H,
+	CT,
+	LA,
+	RA,
+	LL,
+	RL
+};
+
 class Limb;
 class Ammo;
 class Weapon;
@@ -124,7 +133,6 @@ public:
 	~Limb() {}
 };
 
-
 class Ammo {
 private:
 	int damage;
@@ -165,6 +173,7 @@ class AC20Ammo :public Ammo {
 public:
 	AC20Ammo() :Ammo(20, 5) {};
 };
+
 class Weapon {
 private:
 	string name;
@@ -207,6 +216,7 @@ public:
 	}
 };
 
+//Derived Classes
 class AC2 :public Weapon {
 public:
 	AC2(Ammo a) : Weapon("AC2", 1, a, 24, 4, true) {}
@@ -224,7 +234,7 @@ public:
 	AC20(Ammo a) : Weapon("AC20", 7, a, 9, 0, true) {}
 };
 
-int gator(Weapon w, int h, int r, int EM) {
+inline int gator(Weapon w, int h, int r, int EM) {
 	// Gunnery
 	int hit = 4;
 	// Attacker Move
@@ -269,13 +279,13 @@ int gator(Weapon w, int h, int r, int EM) {
 	return hit;
 }
 
-int rollDice() {
+inline int rollDice() {
 	int roll = (rand() % 6) + 1;
 	roll += rand() % 6 + 1;
 	return roll;
 }
 
-template <class T> void Mech::fireWeapon(T& targetSquare) {
+template <class T> inline void Mech::fireWeapon(T& targetSquare) {
 	Mech& Enemy = targetSquare.getHex().getMech();
 	std::vector<Weapon> weaponsAvailable;
 	for (int i = 0; i < 6; ++i) {
@@ -358,15 +368,15 @@ template <class T> void Mech::fireWeapon(T& targetSquare) {
 	}
 }
 
-Mech Mech::makeMech(string fileName) {
+inline Mech Mech::makeMech(string fileName) {
 	vector<string> MP = readData(fileName);
 	string ID = MP[0];
 	int move = stoi(MP[1]);
 	int weight = stoi(MP[2]);
 
-	vector<Limb> parts;
-	vector<vector<Weapon>> mechWeapons;
-	vector<vector<Ammo>> mechAmmo;
+	vector<Limb> parts(6);
+	vector<vector<Weapon>> mechWeapons(6);
+	vector<vector<Ammo>> mechAmmo(6);
 
 	regex ammoRegex(R"(AC(\d+)Ammo)");
 	regex weaponRegex(R"(AC(\d+))");
@@ -377,7 +387,9 @@ Mech Mech::makeMech(string fileName) {
 	for (i; i < MP.size(); ++i) {
 		if (MP[i] == "***") {
 			++j;
-
+			if (j == 6) {
+				break;
+			}
 		}
 		smatch match;
 		if (regex_search(MP[i], match, ammoRegex)) {
@@ -402,6 +414,9 @@ Mech Mech::makeMech(string fileName) {
 	for (i; i < MP.size(); ++i) {
 		if (MP[i] == "xxx") {
 			++j;
+			if (j == 6) {
+				break;
+			}
 			k = 0;
 		}
 		// With another round of regex searching we can find the ammo bin associated with each weapon
@@ -410,15 +425,15 @@ Mech Mech::makeMech(string fileName) {
 		if (regex_search(MP[i], match, weaponRegex)) {
 			int type = stoi(match[1]);
 			if (type == 2) {
-				mechWeapons[j].push_back(AC2(mechAmmo[j][k]));
+				mechWeapons[j].emplace_back(AC2(mechAmmo[j][k]));
 				++k;
 			}
 			else if (type == 5) {
-				mechWeapons[j].push_back(AC5(mechAmmo[j][k]));
+				mechWeapons[j].emplace_back(AC5(mechAmmo[j][k]));
 				++k;
 			}
 			else if (type == 10) {
-				mechWeapons[j].push_back(AC10(mechAmmo[j][k]));
+				mechWeapons[j].emplace_back(AC10(mechAmmo[j][k]));
 				++k;
 			}
 			else if (type == 20) {
@@ -427,23 +442,24 @@ Mech Mech::makeMech(string fileName) {
 			}
 		}
 	}
+	++i; //Enters the mech section of the text file
 	Limb head(stoi(MP[i]), stoi(MP[i + 1]), mechWeapons[0]);
-	parts[0] = head;
+	parts[H] = head;
 	i += 2;
 	Limb torso(stoi(MP[i]), stoi(MP[i + 1]), mechWeapons[1]);
-	parts[1] = torso;
+	parts[CT] = torso;
 	i += 2;
 	Limb leftArm(stoi(MP[i]), stoi(MP[i + 1]), mechWeapons[2]);
-	parts[2] = leftArm;
+	parts[LA] = leftArm;
 	i += 2;
 	Limb rightArm(stoi(MP[i]), stoi(MP[i + 1]), mechWeapons[3]);
-	parts[3] = rightArm;
+	parts[RA] = rightArm;
 	i += 2;
 	Limb leftLeg(stoi(MP[i]), stoi(MP[i + 1]), mechWeapons[4]);
-	parts[4] = leftLeg;
+	parts[LL] = leftLeg;
 	i += 2;
 	Limb rightLeg(stoi(MP[i]), stoi(MP[i + 1]), mechWeapons[5]);
-	parts[5] = rightLeg;
+	parts[RL] = rightLeg;
 	i += 2;
 
 	Mech finishedMech(move, 0, weight, 0, ID, parts);

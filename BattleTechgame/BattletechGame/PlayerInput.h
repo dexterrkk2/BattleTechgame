@@ -4,20 +4,20 @@ using std::cout;
 using std::endl;
 using std::string;
 using std::cin;
-string getPlayerName()
+inline string getPlayerName()
 {
 	string temp;
 	cout << "Enter your name: ";
 	cin >> temp;
 	return temp;
 }
-int randomNumber(int max)
+inline int randomNumber(int max)
 {
 	int randomNum = (rand() % max) + 1;
 	return randomNum;
 }
 //takes in input and makes sure it is an int
-int getInt()
+inline int getInt()
 {
 	int temp;
 	cin >> temp;
@@ -30,7 +30,7 @@ int getInt()
 	}
 	return temp;
 }
-int getIntRange(int min, int max)
+inline int getIntRange(int min, int max)
 {
 	int option = getInt();
 	//rejects input that is not between 1 and the number of options
