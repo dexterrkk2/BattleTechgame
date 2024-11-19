@@ -28,7 +28,7 @@ class Weapon;
 
 class Mech {
 private:
-	int getWalkSpeed;
+	int walkSpeed;
 	int heat;
 	int weight;
 	string ID;
@@ -36,7 +36,7 @@ private:
 	vector<Limb> L;
 public:
 	int getWalk() const {
-		return getWalkSpeed;
+		return walkSpeed;
 	}
 	int getHeat() const {
 		return heat;
@@ -61,17 +61,18 @@ public:
 		moved = amountMoved;
 	}
 
-
 	Mech makeMech(string fileName);
 	void destroyMech() {
-		getWalkSpeed = -1;
+		walkSpeed = -1;
 		cout << "Mech Destroyed" << endl;
 	}
+	void displayMech();
+
 	template <class T> void fireWeapon(T& targetSquare);
 
 	Mech(int w = -1, int h = 0, int lb = 0, int m = 0, string i = "   ", vector<Limb> l = *new vector<Limb>())
-		:getWalkSpeed(w), heat(h), weight(lb), ID(i), moved(m), L(l) {}
-	Mech(const Mech& old) : getWalkSpeed(old.getWalkSpeed), heat(old.heat), weight(old.weight), ID(old.ID), moved(old.moved) {
+		:walkSpeed(w), heat(h), weight(lb), ID(i), moved(m), L(l) {}
+	Mech(const Mech& old) : walkSpeed(old.walkSpeed), heat(old.heat), weight(old.weight), ID(old.ID), moved(old.moved) {
 		for (int i = 0; i < old.L.size(); ++i) {
 			L.push_back(old.L[i]);
 		}
@@ -237,11 +238,34 @@ public:
 	AC20(Ammo a) : Weapon("AC20", 7, a, 9, 0, true) {}
 };
 
-inline int gator(Weapon w, int h, int r, int EM) {
+inline void Mech::displayMech() {
+	cout << "Name: " << ID << endl;
+	cout << "Heat: " << heat << endl;
+	cout << "Limb Armor:Stucture" << endl << "xxxxxxxxxxxxxxxxxxx" << endl;
+	cout << "Head: " << L[H].getArmor() << ":" << L[H].getStructure() << endl;
+	cout << "Torso: " << L[CT].getArmor() << ":" << L[CT].getStructure() << endl;
+	cout << "Left Arm: " << L[LA].getArmor() << ":" << L[LA].getStructure() << endl;
+	cout << "Right Arm: " << L[RA].getArmor() << ":" << L[RA].getStructure() << endl;
+	cout << "Left Leg: " << L[LL].getArmor() << ":" << L[LL].getStructure() << endl;
+	cout << "Right Leg: " << L[RL].getArmor() << ":" << L[RL].getStructure() << endl;
+	cout << "Weapon(shots)" << endl << "xxxxxxxxxxxxxxxxxxx" << endl;
+	for (int i = 0; i < L.size(); ++i) {
+		if (L[i].getWeapons().size() > 0) {
+			for(int j =0;j<L[i].getWeapons().size(); ++j){ 
+				cout << L[i].getWeapons()[j] << "(" << L[i].getWeapons()[j].getAmmo().getShots() << ")" << endl;
+			}
+			
+		}
+	}
+}
+
+inline int gator(Weapon w, int h, int r, int EM, int AM) {
 	// Gunnery
 	int hit = 4;
 	// Attacker Move
-	/*If stood still +0 */
+	if (AM > 0) {
+		hit += 1;
+	}
 	// Target Move
 	if (EM == 0) {
 		//Hit stays the same if the target doesn't move
@@ -333,8 +357,10 @@ template <class T> inline void Mech::fireWeapon(T& targetSquare) {
 	for (int i = 0; i < weaponsSelected.size(); ++i) {
 		int result = rollDice();
 		cout << "You rolled a " << result << " to hit" << endl;
-		if (result >= gator(weaponsSelected[i], heat, 1, targetSquare.getHex().getMech().getMoved())) {
+		// 1 in gator is sample code. We need to calculate range properly
+		if (result >= gator(weaponsSelected[i], heat, 1, targetSquare.getHex().getMech().getMoved(),moved)) {
 			weaponDamage.push_back(weaponsSelected[i].getDamge());
+			cout << "You needed a " << gator(weaponsSelected[i], heat, 1, targetSquare.getHex().getMech().getMoved(), moved) << endl;
 		}
 	}
 	for (int i = 0; i < weaponDamage.size(); ++i) {
