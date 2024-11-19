@@ -211,8 +211,11 @@ public:
 	}
 	friend ostream& operator<<(ostream& os, Weapon w) 
 	{
-		os << w.name << " " << w.damage << " " << w.heatGenerated << " " << w.ammoBin <<" " << w.maxRange << " " << w.minRange << " " << w.canFire;
+		os << w.name;
 		return os;
+	}
+	virtual void displayWeapon() {
+		cout << name << " " << damage << " " << heatGenerated << " " << ammoBin << " " << maxRange << " " << minRange << " " << canFire << endl;
 	}
 };
 
@@ -290,11 +293,12 @@ template <class T> inline void Mech::fireWeapon(T& targetSquare) {
 	std::vector<Weapon> weaponsAvailable;
 	for (int i = 0; i < 6; ++i) {
 		if (!L[i].getIsDestroyed()) {
-			weaponsAvailable.insert(
-				weaponsAvailable.end(), L[i].getWeapons().begin(), L[i].getWeapons().end());
+			for (int j = 0; j < L[i].getWeapons().size(); ++j) {
+				weaponsAvailable.push_back(L[i].getWeapons()[j]);
+			}
 		}
 	}
-	for (int i = weaponsAvailable.size(); i >= 0; --i) {
+	for (int i = weaponsAvailable.size()-1; i >= 0; --i) {
 		if (!weaponsAvailable[i].getCanFire()) {
 			weaponsAvailable.erase(weaponsAvailable.begin() + i);
 		}
@@ -305,8 +309,8 @@ template <class T> inline void Mech::fireWeapon(T& targetSquare) {
 		if (weaponsAvailable.size() == 0) {
 			break;
 		}
-		for (int i = 0; weaponsAvailable.size(); ++i) {
-			cout << i + i << ". " << weaponsAvailable[i];
+		for (int i = 0; i < weaponsAvailable.size(); ++i) {
+			cout << i + 1 << ". " << weaponsAvailable[i] << endl;
 		}
 		cout << "Select a weapon to fire or 0 to confirm" << endl;
 		cin >> whichWeapon;
