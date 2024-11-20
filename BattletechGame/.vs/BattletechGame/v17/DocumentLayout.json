@@ -1,34 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\",
+  "WorkspaceRootPath": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Mech.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Mech.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|solutionrelative:BattletechGame\\Mech.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Map.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|solutionrelative:BattletechGame\\Map.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Battletech.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|solutionrelative:BattletechGame\\Battletech.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|solutionrelative:BattletechGame\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\PlayerInput.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|solutionrelative:BattletechGame\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Battletech.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|solutionrelative:BattletechGame\\Battletech.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Map.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|solutionrelative:BattletechGame\\Map.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Hex.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|solutionrelative:BattletechGame\\Hex.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\PlayerInput.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|solutionrelative:BattletechGame\\PlayerInput.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Map.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Map.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|solutionrelative:BattletechGame\\Map.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{6D79976F-AD8A-4F25-95E6-144742DA1A06}|BattletechGame\\BattletechGame.vcxproj|solutionrelative:BattletechGame\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -47,74 +51,87 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Map.h",
-              "DocumentMoniker": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Map.h",
-              "RelativeDocumentMoniker": "BattletechGame\\Map.h",
-              "ToolTip": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Map.h",
-              "RelativeToolTip": "BattletechGame\\Map.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Hex.h",
+              "DocumentMoniker": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Hex.h",
+              "RelativeDocumentMoniker": "BattletechGame\\Hex.h",
+              "ToolTip": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Hex.h",
+              "RelativeToolTip": "BattletechGame\\Hex.h",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAiwFcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-18T23:14:06.387Z",
+              "WhenOpened": "2024-11-20T23:11:13.989Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PlayerInput.h",
-              "DocumentMoniker": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\PlayerInput.h",
-              "RelativeDocumentMoniker": "BattletechGame\\PlayerInput.h",
-              "ToolTip": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\PlayerInput.h",
-              "RelativeToolTip": "BattletechGame\\PlayerInput.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-18T23:19:37.358Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Player.cpp",
-              "DocumentMoniker": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Player.cpp",
-              "RelativeDocumentMoniker": "BattletechGame\\Player.cpp",
-              "ToolTip": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Player.cpp",
-              "RelativeToolTip": "BattletechGame\\Player.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-18T23:19:32.125Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Player.h",
-              "DocumentMoniker": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Player.h",
-              "RelativeDocumentMoniker": "BattletechGame\\Player.h",
-              "ToolTip": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Player.h",
-              "RelativeToolTip": "BattletechGame\\Player.h",
-              "ViewState": "AQIAAEgAAAAAAAAAAAAAAF4AAABSAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-18T23:18:13.517Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Mech.h",
-              "DocumentMoniker": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Mech.h",
+              "DocumentMoniker": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Mech.h",
               "RelativeDocumentMoniker": "BattletechGame\\Mech.h",
-              "ToolTip": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Mech.h",
+              "ToolTip": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Mech.h",
               "RelativeToolTip": "BattletechGame\\Mech.h",
-              "ViewState": "AgIAAAwBAAAAAAAAAAAAAP4AAABkAAAAAAAAAA==",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAAAFgAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-11-18T23:14:31.52Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Map.h",
+              "DocumentMoniker": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Map.h",
+              "RelativeDocumentMoniker": "BattletechGame\\Map.h",
+              "ToolTip": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Map.h",
+              "RelativeToolTip": "BattletechGame\\Map.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-18T23:14:06.387Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlayerInput.h",
+              "DocumentMoniker": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\PlayerInput.h",
+              "RelativeDocumentMoniker": "BattletechGame\\PlayerInput.h",
+              "ToolTip": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\PlayerInput.h",
+              "RelativeToolTip": "BattletechGame\\PlayerInput.h",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAiwCoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-18T23:19:37.358Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Player.cpp",
+              "DocumentMoniker": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Player.cpp",
+              "RelativeDocumentMoniker": "BattletechGame\\Player.cpp",
+              "ToolTip": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Player.cpp",
+              "RelativeToolTip": "BattletechGame\\Player.cpp",
+              "ViewState": "AgIAAJgAAAAAAAAAAAAiwB0AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-18T23:19:32.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Player.h",
+              "DocumentMoniker": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Player.h",
+              "RelativeDocumentMoniker": "BattletechGame\\Player.h",
+              "ToolTip": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Player.h",
+              "RelativeToolTip": "BattletechGame\\Player.h",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAF8AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-18T23:18:13.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Map.cpp",
-              "DocumentMoniker": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Map.cpp",
+              "DocumentMoniker": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Map.cpp",
               "RelativeDocumentMoniker": "BattletechGame\\Map.cpp",
-              "ToolTip": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Map.cpp",
+              "ToolTip": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Map.cpp",
               "RelativeToolTip": "BattletechGame\\Map.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAHsAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
@@ -123,13 +140,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Battletech.cpp",
-              "DocumentMoniker": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Battletech.cpp",
+              "DocumentMoniker": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Battletech.cpp",
               "RelativeDocumentMoniker": "BattletechGame\\Battletech.cpp",
-              "ToolTip": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Battletech.cpp",
+              "ToolTip": "C:\\Users\\kennersr\\Documents\\GitHub\\BattleTechgame\\BattleTechgame\\BattletechGame\\Battletech.cpp",
               "RelativeToolTip": "BattletechGame\\Battletech.cpp",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAADUAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAEgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-18T23:18:01.324Z",
               "EditorCaption": ""

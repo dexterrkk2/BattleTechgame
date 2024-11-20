@@ -36,14 +36,20 @@ vector<DrawnHex> Player::CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> g
         //checks in front of player to see if player is going to go out of bounds
         if (position.getX() < grid.size() - 1)
         {
-            // returns the hex in front of the player based off where they are facing
-            positions.push_back(grid[position.getX() + 1][position.getY()]);
+			//if (!grid[position.getX() + 1][position.getY()].getHex().hasmech()) 
+			{
+				// returns the hex in front of the player based off where they are facing
+				positions.push_back(grid[position.getX() + 1][position.getY()]);
+			}
         }
         //checks behind player to see if player is going to go out of bounds
         if (position.getX() > 0)
         {
-            //returns the hex behind the player based off where they are facing
-            positions.push_back(grid[position.getX() - 1][position.getY()]);
+			//if (!grid[position.getX() - 1][position.getY()].getHex().hasmech())
+			{
+				//returns the hex behind the player based off where they are facing
+				positions.push_back(grid[position.getX() - 1][position.getY()]);
+			}
         }
     }
     else if (facing == Direction::NORTHEAST || facing == Direction::SOUTHWEST)
@@ -52,14 +58,20 @@ vector<DrawnHex> Player::CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> g
         //checks in front of player to see if player is going to go out of bounds
         if (position.getX() < 0 && position.getY() > 0)
         {
-            // returns the hex in front of the player based off where they are facing
-            positions.push_back(grid[position.getX() - 1][position.getY() - 1]);
+			if (!grid[position.getX() - 1][position.getY()-1].getHex().hasmech())
+			{
+				// returns the hex in front of the player based off where they are facing
+				positions.push_back(grid[position.getX() - 1][position.getY() - 1]);
+			}
         }
         //checks behind player to see if player is going to go out of bounds
         if (position.getX() > grid.size() - 1 && position.getY() < grid[0].size() - 1)
         {
-            // returns the hex in behind the player based off where they are facing
-            positions.push_back(grid[position.getX() + 1][position.getY() + 1]);
+			if (!grid[position.getX() + 1][position.getY()+1].getHex().hasmech())
+			{
+				// returns the hex in behind the player based off where they are facing
+				positions.push_back(grid[position.getX() + 1][position.getY() + 1]);
+			}
         }
     }
     else if (facing == Direction::EAST || facing == Direction::WEST)
@@ -68,14 +80,20 @@ vector<DrawnHex> Player::CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> g
         //checks in front of player to see if player is going to go out of bounds
         if (position.getY() < grid[0].size() - 1)
         {
-            // returns the hex in front of the player based off where they are facing
-            positions.push_back(grid[position.getX()][position.getY() + 1]);
+			if (!grid[position.getX()][position.getY()+1].getHex().hasmech())
+			{
+				// returns the hex in front of the player based off where they are facing
+				positions.push_back(grid[position.getX()][position.getY() + 1]);
+			}
         }
         //checks behind player to see if player is going to go out of bounds
         if (position.getY() > 0)
         {
-            // returns the hex in behind player based off where they are facing
-            positions.push_back(grid[position.getX()][position.getY() - 1]);
+			if (!grid[position.getX()][position.getY()-1].getHex().hasmech())
+			{
+				// returns the hex in behind player based off where they are facing
+				positions.push_back(grid[position.getX()][position.getY() - 1]);
+			}
         }
     }
     else if (facing == Direction::SOUTHEAST || facing == Direction::NORTHWEST)
@@ -84,14 +102,20 @@ vector<DrawnHex> Player::CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> g
         //checks in front of player to see if player is going to go out of bounds
         if (position.getX() > 0 && position.getY() < grid[0].size() - 1)
         {
-            // returns the hex in front of the player based off where they are facing
-            positions.push_back(grid[position.getX() - 1][position.getY() + 1]);
+			if (!grid[position.getX() - 1][position.getY() + 1].getHex().hasmech())
+			{
+				// returns the hex in front of the player based off where they are facing
+				positions.push_back(grid[position.getX() - 1][position.getY() + 1]);
+			}
         }
         //checks behind player to see if player is going to go out of bounds
         if (position.getX() < grid.size() - 1 && position.getY() > 0)
         {
-            // returns the hex in behind player based off where they are facing
-            positions.push_back(grid[position.getX() + 1][position.getY() - 1]);
+			if (!grid[position.getX() + 1][position.getY()-1].getHex().hasmech())
+			{
+				// returns the hex in behind player based off where they are facing
+				positions.push_back(grid[position.getX() + 1][position.getY() - 1]);
+			}
         }
     }
     //return positions the player can move
@@ -191,17 +215,23 @@ void Player::playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex,
 			cout << "Would you " << i + 1 << " move to : " << movePositions[i] << " ";
 		}
 		cout << movePositions.size() + 1 << " rotate ? ";
+		cout << movePositions.size() + 2 << " display mech stats ";
 		//gets input
-		int option = getIntRange(0, movePositions.size() + 1);
+		int option = getIntRange(0, movePositions.size() + 2);
 		//throws an exception if the player selects an option not there, and gets past the while loop reseting it.
-		if (option > movePositions.size() + 1)
+		if (option > movePositions.size() + 2)
 		{
 			throw(option);
 		}
 		//houses the rotate logic
-		if (option == movePositions.size() + 1)
+		else if (option == movePositions.size() + 1)
 		{
 			Turn(drawnHex, movePositions);
+		}
+		else if (option == movePositions.size() + 2) 
+		{
+			mech.displayMech();
+			i--;
 		}
 		//houses the move logic
 		else

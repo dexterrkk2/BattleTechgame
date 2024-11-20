@@ -10,8 +10,8 @@ using std::cin;
 #include "FileIO.h"
 #include "PlayerInput.h"
 //sets the size of the grid
-const int sizex = 10;
-const int sizey = 20;
+const int sizex = 7;
+const int sizey = 12;
 void selectMech(Mech& mech)
 {
 	//creates enemy Mech
