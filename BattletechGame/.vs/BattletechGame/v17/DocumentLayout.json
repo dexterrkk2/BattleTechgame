@@ -58,8 +58,7 @@
               "RelativeToolTip": "BattletechGame\\Hex.h",
               "ViewState": "AgIAAFIAAAAAAAAAAAAhwGoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-20T23:33:28.743Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-20T23:33:28.743Z"
             },
             {
               "$type": "Document",
@@ -69,7 +68,7 @@
               "RelativeDocumentMoniker": "BattletechGame\\Mech.h",
               "ToolTip": "C:\\Users\\ssami\\source\\repos\\BattleTechgame\\BattleTechgame\\BattletechGame\\Mech.h",
               "RelativeToolTip": "BattletechGame\\Mech.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoBAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAIYBAAAAAAAAAAAAAKUBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-11-20T23:33:29.046Z",
               "EditorCaption": ""
@@ -84,8 +83,7 @@
               "RelativeToolTip": "BattletechGame\\Map.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-20T23:33:29.304Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-20T23:33:29.304Z"
             },
             {
               "$type": "Document",
@@ -97,8 +95,7 @@
               "RelativeToolTip": "BattletechGame\\PlayerInput.h",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-20T23:33:29.306Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-20T23:33:29.306Z"
             },
             {
               "$type": "Document",
@@ -110,8 +107,7 @@
               "RelativeToolTip": "BattletechGame\\Player.cpp",
               "ViewState": "AgIAAOAAAAAAAAAAAAAhwPYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-20T23:33:29.307Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-20T23:33:29.307Z"
             },
             {
               "$type": "Document",
@@ -123,8 +119,7 @@
               "RelativeToolTip": "BattletechGame\\Player.h",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAF8AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-20T23:33:29.309Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-20T23:33:29.309Z"
             },
             {
               "$type": "Document",
@@ -136,8 +131,7 @@
               "RelativeToolTip": "BattletechGame\\Map.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAHsAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-20T23:33:29.313Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-20T23:33:29.313Z"
             },
             {
               "$type": "Document",
@@ -149,8 +143,7 @@
               "RelativeToolTip": "BattletechGame\\Battletech.cpp",
               "ViewState": "AgIAAE4AAAAAAAAAAAAhwGsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-20T23:33:29.314Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-20T23:33:29.314Z"
             }
           ]
         }

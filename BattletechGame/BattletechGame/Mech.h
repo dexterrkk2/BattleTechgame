@@ -35,61 +35,54 @@ private:
 	int moved;
 	vector<Limb> L;
 public:
-	//Returns the walk speed.
 	int getWalk() const {
 		return walkSpeed;
 	}
-	//Returns the walk speed.
 	int getHeat() const {
 		return heat;
 	}
-	//Returns the Weight.
 	int getWeight() const {
 		return weight;
 	}
-	//Returns the Mech Name and Image.
 	string getID() const {
 		return ID;
 	}
-	//Returns how fast the mech walked in a turn.
 	int getMoved() const {
 		return moved;
 	}
-	//Returns the entire Limb vector.
 	vector<Limb> getLimbs() const {
 		return L;
 	}
 	
-	//Attaches the Name to the Mech.
 	void setID(string ID) {
 		this->ID = ID;
 	}
-	//Sets how much the mech moved in one turn.
 	void setMoved(int amountMoved) {
 		moved = amountMoved;
 	}
+
 	//Creates a mech from a text file
 	Mech makeMech(string fileName);
+
 	//Sets the mechs walkspeed to one, which removes the mech in Hex.
 	void destroyMech() {
 		walkSpeed = -1;
 		cout << "Mech Destroyed" << endl;
 	}
+
 	//Displays all the information about the mech, along with the weapons and status of each limb.
 	void displayMech();
+
 	//Allows a player to fire a weapon at a target mech
 	template <class T> void fireWeapon(T& targetSquare);
 
-	//Default constructor
 	Mech(int w = -1, int h = 0, int lb = 0, int m = 0, string i = "   ", vector<Limb> l = {})
 		:walkSpeed(w), heat(h), weight(lb), ID(i), moved(m), L(l) {}
-	//Copy Constructor
 	Mech(const Mech& old) : walkSpeed(old.walkSpeed), heat(old.heat), weight(old.weight), ID(old.ID), moved(old.moved) {
 		for (int i = 0; i < old.L.size(); ++i) {
 			L.push_back(old.L[i]);
 		}
 	}
-	//Deconstructor
 	~Mech() {}
 };
 
@@ -109,10 +102,10 @@ public:
 	int getStructure() const {
 		return structure;
 	}
-	int getArmorDamage() {
+	int getArmorDamage() const  {
 		return armorDamage;
 	}
-	int getStructureDamgage() {
+	int getStructureDamgage() const  {
 		return structureDamage;
 	}
 	vector<Weapon> getWeapons() const {
@@ -262,7 +255,7 @@ inline void Limb::takeDamage(int damageTaken) {
 		isDestroyed = true;
 	}
 }
-
+// Displays the status of a mech, along with the health of each limb and the ammo count of available weapons
 inline void Mech::displayMech() {
 	cout << "Name: " << ID << endl;
 	cout << "Heat: " << heat << endl;
@@ -283,8 +276,9 @@ inline void Mech::displayMech() {
 		}
 	}
 }
+
 //Takes the users weapon, the users heat, the enemies location, and the amount the enemy moved
-// in order to calculate number the user needs to roll better than to hit.
+// in order to calculate the number a user needs to beat in order to hit.
 inline int gator(Weapon w, int h, int r, int EM, int AM) {
 	// Gunnary: Base chance to hit
 	int hit = 4;
@@ -301,7 +295,7 @@ inline int gator(Weapon w, int h, int r, int EM, int AM) {
 		hit = hit + ((EM - 1) / 2);
 	}
 	// Other: Heat modifers
-	// Player heat makes it harder for shots to land
+	// Higher Player heat makes it harder for shots to land
 	if (h < 8) {
 		hit += 0;
 	}
@@ -332,13 +326,14 @@ inline int gator(Weapon w, int h, int r, int EM, int AM) {
 	}
 	return hit;
 }
-
+//Rolls 2d6
 inline int rollDice() {
 	int roll = (rand() % 6) + 1;
 	roll += rand() % 6 + 1;
 	return roll;
 }
 
+//This Demon Code Ruined Our Lives
 template <class T> inline void Mech::fireWeapon(T& targetSquare) {
 	Mech& Enemy = targetSquare.getHex().getMech();
 	std::vector<Weapon> weaponsAvailable;
