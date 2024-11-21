@@ -1,6 +1,2 @@
-﻿  Map.cpp
-C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Map.cpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'Map.cpp')
-  
-  BattletechGame.vcxproj -> C:\Users\kennersr\Documents\GitHub\BattleTechgame\BattleTechgame\x64\Debug\BattletechGame.exe
+﻿  Mech.cpp
+  BattletechGame.vcxproj -> C:\Users\ssami\source\repos\BattleTechgame\BattleTechgame\x64\Debug\BattletechGame.exe
