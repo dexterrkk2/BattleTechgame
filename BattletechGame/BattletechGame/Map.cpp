@@ -7,8 +7,8 @@ using std::endl;
 using std::string;
 using std::cin;
 using namespace std;
-//populates the hex grid with cordinates and assigns hexes to point to other hexes
-void Map::drawGrid(int sizeX, int sizeY, vector<vector<DrawnHex>> &drawnHex)
+//populates the hex grid with cordinates
+void Map::SetGrid(int sizeX, int sizeY, vector<vector<DrawnHex>> &drawnHex)
 {
     //runs it equal to number of rows
 	for (int i = 0; i < sizeX; i++) 
@@ -17,26 +17,9 @@ void Map::drawGrid(int sizeX, int sizeY, vector<vector<DrawnHex>> &drawnHex)
         for (int j = 0; j < sizeY; j++)
 		{
 			//sets the cords of the hex
-            drawHex(drawnHex[i][j], i, j);
-            //if (i > 0) 
-            //{
-            //    //sets hexes to point at the hexes below them
-            //    //drawnHex[i][j].setPointingTo(drawnHex[i - 1][j].getHex());
-            //}
-            //if (i == j - 1) {
-            //    //sets the hexes at 0 to point at the row above it
-            //    //drawnHex[0][j].setPointingTo(drawnHex[1][j].getHex());
-            //}
+            drawnHex[i][j].setcords(i,j);
 		}
-		//cout << endl;
 	}
-}
-string Map::drawHex(DrawnHex& hex, int cordX, int cordY)
-{
-    //cout << "Set cords" << endl;
-    //cout << cordX << cordY << endl;
-    hex.setcords(cordX, cordY);
-	return 	hex.getID();
 }
 void printUpperHex(int& width) 
 {
@@ -57,18 +40,20 @@ void printMiddleHex(int& width)
 {
     cout << " ";
     cout << "/";
-    //Width minus spaces printed before and after
+    //prints spaces based off width of hex and the items printed before and after
     for (int j = 0; j < (width / 2) - 1; j++)
     {
         cout << " ";
     }
+    //to print one \ you need an escape letter aka \ 
     cout << "\\" << "  ";
 }
 void printLowerHex(const int& width, string image) 
 {
     cout << " ";
+    //to print one \ you need an escape letter aka \ 
     cout << "\\";
-    //prints half the spaces
+    //prints spaces based off width of hex and the items printed before and after
     for (int j = 0; j < (width / 4) - 2; j++)
     {
         cout << " ";
@@ -98,7 +83,6 @@ void Map::printHex(int rows, int cols, vector<vector<DrawnHex>> &hex) {
             {
                 //takes cout output
                 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-                // Print the upper part of hexagons
                 //prints for the number of hexagons in column
                 for (int c = 0; c < cols; ++c)
                 {
@@ -112,7 +96,7 @@ void Map::printHex(int rows, int cols, vector<vector<DrawnHex>> &hex) {
             else if (i % 4 == 2) 
             {
             }
-            //prints the upper middle part of the hexagon
+            //prints the middle part of the hexagon
             else if (i % 4 == 1)
             {
                 //takes cout output
@@ -126,7 +110,7 @@ void Map::printHex(int rows, int cols, vector<vector<DrawnHex>> &hex) {
                 }
                 cout << endl;
             }
-            //prints the lower middle part of the hexagon
+            //prints the bottom of the hexagon
             else 
             {
                 //takes in output
@@ -135,7 +119,7 @@ void Map::printHex(int rows, int cols, vector<vector<DrawnHex>> &hex) {
                 for (int c = 0; c < cols; ++c) {
                     //sets output to hex color
                     SetConsoleTextAttribute(hConsole, hex[q][c].getColor());
-                    printLowerHex(5, hex[q][c].getID());
+                    printLowerHex(width, hex[q][c].getID());
                 }
                 //goes to next line
                 cout << endl;

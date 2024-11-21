@@ -122,6 +122,8 @@ vector<DrawnHex> Player::CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> g
     }
     return positions;
 }
+//changes the direction the player is facing which changes where they can move
+//also resets the color of hexes the player can move to back to blue
 void Player::Turn(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePositions)
 {
 	cout << "Would you like to turn 1) left or 2) right" << endl;
@@ -141,6 +143,7 @@ void Player::Turn(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePosit
 		drawnHex[movePositions[i].getX()][movePositions[i].getY()].setColor(FOREGROUND_BLUE);
 	}
 }
+//changes player positions to where the player has selected, and changes where the mech is on the grid
 void Player::Move(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePositions, int option)
 {
 	int previousX = row;
@@ -150,12 +153,12 @@ void Player::Move(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePosit
 	//sets the mech to the hex tile
 	drawnHex[row][col].getHex().setMech(mech);
 	drawnHex[previousX][previousY].getHex().eraseMech();
-	//updates grid
 }
+//takes the player mech and fires it's weapons at the enemy mech.
 void Player::fireWeapon(vector<vector<DrawnHex>>& drawnHex, Player& enemy)
 {
 	vector<DrawnHex> targets = FindTarget(drawnHex, mech);
-	//asks the player if they would like to attack them.
+	//asks the player if they would like to attack the targets returned and picks which one.
 	for (int i = 0; i < targets.size(); i++)
 	{
 		cout << "Would you like to attack " << i + 1 << ": " << targets[i].getID() << " ";
@@ -164,22 +167,17 @@ void Player::fireWeapon(vector<vector<DrawnHex>>& drawnHex, Player& enemy)
 	int fireAt = getIntRange(0, targets.size());
 	//fires at selected target
 	mech.fireWeapon(enemy);
+	//updates map after the enemy has been fired at
 	drawnHex[enemy.getRow()][enemy.getCol()].getHex().setMech(enemy.mech);
-	if (drawnHex[targets[fireAt - 1].getX()][targets[fireAt - 1].getY()].getHex().getMech().getWalk() == -1)
-	{
-		drawnHex[targets[fireAt - 1].getX()][targets[fireAt - 1].getY()].getHex().eraseMech();
-	}
-
 }
+//checks if the player has targets left if they don't returns true, if they do returns false 
 bool Player::killedTarget(vector<vector<DrawnHex>>& drawnHex) {
 	vector<DrawnHex> targets = FindTarget(drawnHex, mech);
 	if (targets.size() == 0)
 	{
-		return true;
+		return false;
 	}
-	//returns how many times the player has moved for other logic
-
-	return false;
+	return true;
 }
 //takes the map gets where the player can move and lets the player choose to move there, or rotate to move somewhere else.
 void Player::playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex, int sizey, Player& enemy)

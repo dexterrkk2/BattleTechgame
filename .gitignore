@@ -33,3 +33,13 @@
 *.ipch
 *.ipch
 BattletechGame/.vs/BattletechGame/v17/ipch/AutoPCH/22e74f422333d5cd/MAP.ipch
+BattletechGame/BattletechGame/x64/Debug/BattletechGame.tlog/CL.command.1.tlog
+BattletechGame/BattletechGame/x64/Debug/BattletechGame.log
+BattletechGame/BattletechGame/x64/Debug/BattletechGame.ilk
+BattletechGame/BattletechGame/x64/Debug/BattletechGame.tlog/CL.read.1.tlog
+BattletechGame/BattletechGame/x64/Debug/BattletechGame.tlog/CL.write.1.tlog
+BattletechGame/BattletechGame/x64/Debug/BattletechGame.log
+BattletechGame/BattletechGame/x64/Debug/BattletechGame.tlog/CL.command.1.tlog
+BattletechGame/BattletechGame/x64/Debug/BattletechGame.tlog/CL.read.1.tlog
+BattletechGame/BattletechGame/x64/Debug/BattletechGame.tlog/CL.write.1.tlog
+*.log

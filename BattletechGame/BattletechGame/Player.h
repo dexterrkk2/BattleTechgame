@@ -90,9 +90,14 @@ public:
     {
         this->mech = mech;
     }
-    void playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex, int sizey, Player& player);
+    //runs the player turn takes in an enemy and fires a weapon at it. updates the map afterwords and takes in size to pass to map
+    void playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex, int sizey, Player& enemy);
+    //moves the player on the map 1 forward or backwards tile. prints map afterwords. 
     void Move(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePositions, int option);
+    //turns the player changing where they can move. 
     void Turn(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePositions);
-    void fireWeapon(vector<vector<DrawnHex>>& drawnHex, Player& player);
+    //checks if there's targets and fires at them also calles mech fire code to fire at the enemy
+    void fireWeapon(vector<vector<DrawnHex>>& drawnHex, Player& enemy);
+    //checks if there are targets left for the player to kill
     bool killedTarget(vector<vector<DrawnHex>>& drawnHex);
 };
