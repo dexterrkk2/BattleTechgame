@@ -98,14 +98,14 @@ int main()
 		bool turnCheck = false;
 		do
 		{
-			player.playerTurn(drawnHex, map, sizex, sizey);
+			player.playerTurn(drawnHex, map, sizex, sizey, enemyPlayer);
 			turnCheck = player.killedTarget(drawnHex);
 			if (turnCheck == true) 
 			{
 				cout<< player.getName()<<" Won" << endl;
 				break;
 			}
-			enemyPlayer.playerTurn(drawnHex, map, sizex, sizey);
+			enemyPlayer.playerTurn(drawnHex, map, sizex, sizey, player);
 			turnCheck = enemyPlayer.killedTarget(drawnHex);
 			if (turnCheck == true)
 			{

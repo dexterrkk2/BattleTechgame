@@ -4,6 +4,7 @@ using std::cout;
 using std::endl;
 using std::string;
 using std::cin;
+//gets a string from the player
 inline string getPlayerName()
 {
 	string temp;
@@ -11,6 +12,7 @@ inline string getPlayerName()
 	cin >> temp;
 	return temp;
 }
+//returns a random number from 1 to max
 inline int randomNumber(int max)
 {
 	int randomNum = (rand() % max) + 1;
@@ -30,10 +32,11 @@ inline int getInt()
 	}
 	return temp;
 }
+//gets an int from the user based off the min and max
 inline int getIntRange(int min, int max)
 {
 	int option = getInt();
-	//rejects input that is not between 1 and the number of options
+	//rejects input that is not between min and max
 	while (option <= min || option > max)
 	{
 		cout << "Invalid Input: ";

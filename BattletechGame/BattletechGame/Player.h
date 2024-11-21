@@ -90,9 +90,9 @@ public:
     {
         this->mech = mech;
     }
-    void playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex, int sizey);
+    void playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex, int sizey, Player& player);
     void Move(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePositions, int option);
     void Turn(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePositions);
-    void fireWeapon(vector<vector<DrawnHex>>& drawnHex);
+    void fireWeapon(vector<vector<DrawnHex>>& drawnHex, Player& player);
     bool killedTarget(vector<vector<DrawnHex>>& drawnHex);
 };

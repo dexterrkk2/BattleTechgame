@@ -339,8 +339,8 @@ inline int rollDice() {
 	return roll;
 }
 
-template <class T> inline void Mech::fireWeapon(T& targetSquare) {
-	Mech& Enemy = targetSquare.getHex().getMech();
+template <class T> inline void Mech::fireWeapon(T& targetPlayer) {
+	Mech& Enemy = targetPlayer.getMech();
 	std::vector<Weapon> weaponsAvailable;
 	for (int i = 0; i < 6; ++i) {
 		if (!L[i].getIsDestroyed()) {
@@ -385,9 +385,9 @@ template <class T> inline void Mech::fireWeapon(T& targetSquare) {
 		int result = rollDice();
 		cout << "You rolled a " << result << " to hit" << endl;
 		// 1 in gator is sample code. We need to calculate range properly
-		if (result >= gator(weaponsSelected[i], heat, 1, targetSquare.getHex().getMech().getMoved(),moved)) {
+		if (result >= gator(weaponsSelected[i], heat, 1, targetPlayer.getMech().getMoved(),moved)) {
 			weaponDamage.push_back(weaponsSelected[i].getDamge());
-			cout << "You needed a " << gator(weaponsSelected[i], heat, 1, targetSquare.getHex().getMech().getMoved(), moved) << endl;
+			cout << "You needed a " << gator(weaponsSelected[i], heat, 1, targetPlayer.getMech().getMoved(), moved) << endl;
 		}
 	}
 	for (int i = 0; i < weaponDamage.size(); ++i) {

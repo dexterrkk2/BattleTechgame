@@ -2,11 +2,14 @@
 #include <vector>
 #include <windows.h>
 using std::vector;
+//finds tartgets for the player
 vector<DrawnHex> FindTarget(vector<vector<DrawnHex>>& grid, Mech& playerMech)
 {
 	vector<DrawnHex> targets;
+	//goes through each row of the grid
 	for (int i = 0; i < grid.size(); i++)
 	{
+		//goes through each column
 		for (int j = 0; j < grid[0].size(); j++)
 		{
 			//checks if grid at column i row j has a mech
@@ -15,13 +18,12 @@ vector<DrawnHex> FindTarget(vector<vector<DrawnHex>>& grid, Mech& playerMech)
 				//checks if mech is the player
 				if (grid[i][j].getHex().getMech().getID() != playerMech.getID())
 				{
-					//adds to vector
+					//adds to vector of targets
 					targets.push_back(grid[i][j]);
 				}
 			}
 		}
 	}
-	//returns targets
 	return targets;
 }
 //returns a vector of positions the player can move
@@ -36,7 +38,7 @@ vector<DrawnHex> Player::CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> g
         //checks in front of player to see if player is going to go out of bounds
         if (position.getX() < grid.size() - 1)
         {
-			//if (!grid[position.getX() + 1][position.getY()].getHex().hasmech()) 
+			if (!grid[position.getX() + 1][position.getY()].getHex().hasmech()) 
 			{
 				// returns the hex in front of the player based off where they are facing
 				positions.push_back(grid[position.getX() + 1][position.getY()]);
@@ -45,7 +47,7 @@ vector<DrawnHex> Player::CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> g
         //checks behind player to see if player is going to go out of bounds
         if (position.getX() > 0)
         {
-			//if (!grid[position.getX() - 1][position.getY()].getHex().hasmech())
+			if (!grid[position.getX() - 1][position.getY()].getHex().hasmech())
 			{
 				//returns the hex behind the player based off where they are facing
 				positions.push_back(grid[position.getX() - 1][position.getY()]);
@@ -91,7 +93,7 @@ vector<DrawnHex> Player::CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> g
         {
 			if (!grid[position.getX()][position.getY()-1].getHex().hasmech())
 			{
-				// returns the hex in behind player based off where they are facing
+				// returns the hex ibehind player based off where they are facing
 				positions.push_back(grid[position.getX()][position.getY() - 1]);
 			}
         }
@@ -113,26 +115,22 @@ vector<DrawnHex> Player::CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> g
         {
 			if (!grid[position.getX() + 1][position.getY()-1].getHex().hasmech())
 			{
-				// returns the hex in behind player based off where they are facing
+				// returns the hex behind player based off where they are facing
 				positions.push_back(grid[position.getX() + 1][position.getY() - 1]);
 			}
         }
     }
-    //return positions the player can move
     return positions;
 }
 void Player::Turn(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePositions)
 {
-	//lets the player choose left or right to turn
 	cout << "Would you like to turn 1) left or 2) right" << endl;
 	//gets input and makes sure it is in range.
 	int leftOrRight = getIntRange(0, 2);
-	//turns left
 	if (leftOrRight == 1)
 	{
 		turnLeft();
 	}
-	//turns right
 	else
 	{
 		turnRight();
@@ -145,11 +143,8 @@ void Player::Turn(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePosit
 }
 void Player::Move(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePositions, int option)
 {
-	//cout << "Moved" << endl;
-			//removes mech off the current tile
 	int previousX = row;
 	int previousY = col;
-	//changes the hexes beck to blue after player selected option
 	//moves the player to the hex
 	SetPostiiton(movePositions[option - 1].getX(), (movePositions[option - 1].getY()));
 	//sets the mech to the hex tile
@@ -157,7 +152,7 @@ void Player::Move(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePosit
 	drawnHex[previousX][previousY].getHex().eraseMech();
 	//updates grid
 }
-void Player::fireWeapon(vector<vector<DrawnHex>>& drawnHex)
+void Player::fireWeapon(vector<vector<DrawnHex>>& drawnHex, Player& enemy)
 {
 	vector<DrawnHex> targets = FindTarget(drawnHex, mech);
 	//asks the player if they would like to attack them.
@@ -168,7 +163,8 @@ void Player::fireWeapon(vector<vector<DrawnHex>>& drawnHex)
 	//gets an input from the screen equal to number of targers
 	int fireAt = getIntRange(0, targets.size());
 	//fires at selected target
-	mech.fireWeapon(drawnHex[targets[fireAt - 1].getX()][targets[fireAt - 1].getY()]);
+	mech.fireWeapon(enemy);
+	drawnHex[enemy.getRow()][enemy.getCol()].getHex().setMech(enemy.mech);
 	if (drawnHex[targets[fireAt - 1].getX()][targets[fireAt - 1].getY()].getHex().getMech().getWalk() == -1)
 	{
 		drawnHex[targets[fireAt - 1].getX()][targets[fireAt - 1].getY()].getHex().eraseMech();
@@ -186,7 +182,7 @@ bool Player::killedTarget(vector<vector<DrawnHex>>& drawnHex) {
 	return false;
 }
 //takes the map gets where the player can move and lets the player choose to move there, or rotate to move somewhere else.
-void Player::playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex, int sizey)
+void Player::playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex, int sizey, Player& enemy)
 {
 	//cout << player.getMech().getID() << endl;
 	//cout << "Your Walkspeed is " << player.getMech().walk() << endl;
@@ -242,6 +238,6 @@ void Player::playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex,
 	}
 	//firing code
 	setAmountMoved(amountMoved);
-	fireWeapon(drawnHex);
+	fireWeapon(drawnHex, enemy);
 	//gets enemy mechs
 }
