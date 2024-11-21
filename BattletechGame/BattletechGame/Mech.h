@@ -148,7 +148,6 @@ public:
 	virtual int getShots() const {
 		return shots;
 	}
-
 	virtual void removeAmmo() {
 		--shots;
 	}
@@ -246,9 +245,9 @@ public:
 	AC20(Ammo a) : Weapon("AC20", 7, a, 9, 0, true) {}
 };
 
+// The functions below should live in Mech.cpp, but the compiler hates us and won't let it be.
 
-
-
+// Rolls 2d6
 inline int rollDice() {
 	int roll = (rand() % 6) + 1;
 	roll += rand() % 6 + 1;
@@ -305,8 +304,6 @@ inline int gator(Weapon w, int h, int r, int EM, int AM) {
 	return hit;
 }
 
-
-
 // This Demon Code Ruined Our Lives
 // This code takes a target square and gets the enemy mech from the square. 
 // It then allows the user to pick what weapon they want to fire and removes ammo from the weapon they chose.
@@ -322,7 +319,7 @@ template <class T> inline void Mech::fireWeapon(T& targetPlayer) {
 			}
 		}
 	}
-	for (int i = weaponsAvailable.size()-1; i >= 0; --i) {
+	for (int i = weaponsAvailable.size() - 1; i >= 0; --i) {
 		if (!weaponsAvailable[i].getCanFire()) {
 			weaponsAvailable.erase(weaponsAvailable.begin() + i);
 		}
@@ -358,7 +355,7 @@ template <class T> inline void Mech::fireWeapon(T& targetPlayer) {
 		int result = rollDice();
 		cout << "You rolled a " << result << " to hit" << endl;
 		// 1 in gator is sample code. We need to calculate range properly
-		if (result >= gator(weaponsSelected[i], heat, 1, targetPlayer.getMech().getMoved(),moved)) {
+		if (result >= gator(weaponsSelected[i], heat, 1, targetPlayer.getMech().getMoved(), moved)) {
 			weaponDamage.push_back(weaponsSelected[i].getDamge());
 			cout << "You needed a " << gator(weaponsSelected[i], heat, 1, targetPlayer.getMech().getMoved(), moved) << endl;
 		}
