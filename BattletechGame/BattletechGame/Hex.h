@@ -10,8 +10,6 @@ private:
 	Mech mech;
 	int color; 
 public: 
-	//sets what the mech is pointing to
-	/*void Rotate(Hex& hex);*/
 	//returns mech
 	Mech& getMech() 
 	{
@@ -51,11 +49,6 @@ public:
 	{
 		return mech.getID();
 	}
-	//returns where this hex is pointing towards
-	/*Hex getPointingTo() 
-	{
-		return pointingTo;
-	}*/
 	//sets color of hex
 	void setColor(int i) 
 	{
@@ -106,11 +99,6 @@ public:
 	int getY() 
 	{
 		return y;
-	}
-	//sets what hex the hex it has is pointing to in memory
-	void setPointingTo(Hex& hex) 
-	{
-		/*hex.Rotate(hex);*/
 	}
 	//returns the hex referenced by this class
 	Hex& getHex() 

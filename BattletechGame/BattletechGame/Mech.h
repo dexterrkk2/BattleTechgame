@@ -35,50 +35,62 @@ private:
 	int moved;
 	vector<Limb> L;
 public:
+	//Returns the walk speed.
 	int getWalk() const {
 		return walkSpeed;
 	}
+	//Returns the walk speed.
 	int getHeat() const {
 		return heat;
 	}
+	//Returns the Weight.
 	int getWeight() const {
 		return weight;
 	}
+	//Returns the Mech Name and Image.
 	string getID() const {
 		return ID;
 	}
+	//Returns how fast the mech walked in a turn.
 	int getMoved() const {
 		return moved;
 	}
+	//Returns the entire Limb vector.
 	vector<Limb> getLimbs() const {
 		return L;
 	}
-
+	
+	//Attaches the Name to the Mech.
 	void setID(string ID) {
 		this->ID = ID;
 	}
+	//Sets how much the mech moved in one turn.
 	void setMoved(int amountMoved) {
 		moved = amountMoved;
 	}
-
+	//Creates a mech from a text file
 	Mech makeMech(string fileName);
+	//Sets the mechs walkspeed to one, which removes the mech in Hex.
 	void destroyMech() {
 		walkSpeed = -1;
 		cout << "Mech Destroyed" << endl;
 	}
+	//Displays all the information about the mech, along with the weapons and status of each limb.
 	void displayMech();
-
+	//Allows a player to fire a weapon at a target mech
 	template <class T> void fireWeapon(T& targetSquare);
 
-	Mech(int w = -1, int h = 0, int lb = 0, int m = 0, string i = "   ", vector<Limb> l = *new vector<Limb>())
+	//Default constructor
+	Mech(int w = -1, int h = 0, int lb = 0, int m = 0, string i = "   ", vector<Limb> l = {})
 		:walkSpeed(w), heat(h), weight(lb), ID(i), moved(m), L(l) {}
+	//Copy Constructor
 	Mech(const Mech& old) : walkSpeed(old.walkSpeed), heat(old.heat), weight(old.weight), ID(old.ID), moved(old.moved) {
 		for (int i = 0; i < old.L.size(); ++i) {
 			L.push_back(old.L[i]);
 		}
 	}
-	~Mech() {
-	}
+	//Deconstructor
+	~Mech() {}
 };
 
 class Limb {
@@ -97,28 +109,19 @@ public:
 	int getStructure() const {
 		return structure;
 	}
+	int getArmorDamage() {
+		return armorDamage;
+	}
+	int getStructureDamgage() {
+		return structureDamage;
+	}
 	vector<Weapon> getWeapons() const {
 		return weaponsOnLimb;
 	}
 	bool getIsDestroyed() const {
 		return isDestroyed;
 	}
-	void takeDamage(int damageTaken) {
-		if (armor > armorDamage) {
-			armorDamage += damageTaken;
-			if (armorDamage > armor) {
-				structureDamage = armorDamage - armor;
-				armorDamage = armor;
-			}
-		}
-		else {
-			structureDamage += damageTaken;
-		}
-		cout << "You dealt " << damageTaken << " damage" << endl;
-		if (structureDamage >= structure) {
-			isDestroyed = true;
-		}
-	}
+	void takeDamage(int damageTaken);
 
 	Limb(int a = 0, int s = 1, vector<Weapon> w = *new vector<Weapon>(), bool isD = false, int AD = 0, int SD = 0)
 		: armor(a), structure(s), weaponsOnLimb(w), structureDamage(SD), armorDamage(AD), isDestroyed(isD) {
@@ -150,6 +153,8 @@ public:
 		--shots;
 	}
 	Ammo(int d = 0, int s = 0) : damage(d), shots(s) {}
+	Ammo(const Ammo& old)
+		: damage(old.damage),shots(old.shots){ }
 	friend ostream& operator<<(ostream& os, Ammo a)
 	{
 		os << "Ammo " << a.damage << " " << a.shots;
@@ -210,6 +215,9 @@ public:
 		: name(n), heatGenerated(h), ammoBin(a), maxRange(maxR), minRange(minR), canFire(cf) {
 		damage = a.getDamage();
 	}
+	Weapon(const Weapon& old)
+		: name(old.name), damage(old.damage), heatGenerated(old.heatGenerated)
+		, ammoBin(old.ammoBin), maxRange(old.maxRange), minRange(old.minRange), canFire(old.canFire) {}
 	friend ostream& operator<<(ostream& os, Weapon w) 
 	{
 		os << w.name;
@@ -238,16 +246,33 @@ public:
 	AC20(Ammo a) : Weapon("AC20", 7, a, 9, 0, true) {}
 };
 
+inline void Limb::takeDamage(int damageTaken) {
+	if (armor > armorDamage) {
+		armorDamage += damageTaken;
+		if (armorDamage > armor) {
+			structureDamage = armorDamage - armor;
+			armorDamage = armor;
+		}
+	}
+	else {
+		structureDamage += damageTaken;
+	}
+	cout << "You dealt " << damageTaken << " damage" << endl;
+	if (structureDamage >= structure) {
+		isDestroyed = true;
+	}
+}
+
 inline void Mech::displayMech() {
 	cout << "Name: " << ID << endl;
 	cout << "Heat: " << heat << endl;
-	cout << "Limb Armor:Stucture" << endl << "xxxxxxxxxxxxxxxxxxx" << endl;
-	cout << "Head: " << L[H].getArmor() << ":" << L[H].getStructure() << endl;
-	cout << "Torso: " << L[CT].getArmor() << ":" << L[CT].getStructure() << endl;
-	cout << "Left Arm: " << L[LA].getArmor() << ":" << L[LA].getStructure() << endl;
-	cout << "Right Arm: " << L[RA].getArmor() << ":" << L[RA].getStructure() << endl;
-	cout << "Left Leg: " << L[LL].getArmor() << ":" << L[LL].getStructure() << endl;
-	cout << "Right Leg: " << L[RL].getArmor() << ":" << L[RL].getStructure() << endl;
+	cout << "Limb Armor(Stucture)" << endl << "xxxxxxxxxxxxxxxxxxx" << endl;
+	cout << "Head: " << L[H].getArmor() - L[H].getArmorDamage() << "(" << L[H].getStructure() - L[H].getStructureDamgage() << ")" << endl;
+	cout << "Torso: " << L[CT].getArmor() - L[CT].getArmorDamage() << "(" << L[CT].getStructure() - L[CT].getStructureDamgage() << ")" << endl;
+	cout << "Left Arm: " << L[LA].getArmor() - L[LA].getArmorDamage() << "(" << L[LA].getStructure() - L[LA].getStructureDamgage() << ")" << endl;
+	cout << "Right Arm: " << L[RA].getArmor() - L[RA].getArmorDamage() << "(" << L[RA].getStructure() - L[RA].getStructureDamgage() << ")" << endl;
+	cout << "Left Leg: " << L[LL].getArmor() - L[LL].getArmorDamage() << "(" << L[LL].getStructure() - L[LL].getStructureDamgage() << ")" << endl;
+	cout << "Right Leg: " << L[RL].getArmor() - L[RL].getArmorDamage() << "(" << L[RL].getStructure() - L[RL].getStructureDamgage() << ")" << endl;
 	cout << "Weapon(shots)" << endl << "xxxxxxxxxxxxxxxxxxx" << endl;
 	for (int i = 0; i < L.size(); ++i) {
 		if (L[i].getWeapons().size() > 0) {
@@ -258,23 +283,25 @@ inline void Mech::displayMech() {
 		}
 	}
 }
-
+//Takes the users weapon, the users heat, the enemies location, and the amount the enemy moved
+// in order to calculate number the user needs to roll better than to hit.
 inline int gator(Weapon w, int h, int r, int EM, int AM) {
-	// Gunnery
+	// Gunnary: Base chance to hit
 	int hit = 4;
-	// Attacker Move
+	// Attacker Move: How did the attacker move
 	if (AM > 0) {
 		hit += 1;
 	}
-	// Target Move
-	if (EM == 0) {
-		//Hit stays the same if the target doesn't move
+	// Target Move: How much did the target move
+	//Hit stays the same if the target doesn't move
+	if (EM == 0) {		
 	}
+	//Hit advances every two tiles of movement after the first
 	else {
-		//Hit advances every two tiles of movement after the first
 		hit = hit + ((EM - 1) / 2);
 	}
-	// Other
+	// Other: Heat modifers
+	// Player heat makes it harder for shots to land
 	if (h < 8) {
 		hit += 0;
 	}
@@ -290,7 +317,7 @@ inline int gator(Weapon w, int h, int r, int EM, int AM) {
 	else {
 		hit += 4;
 	}
-	// Range
+	// Range: How far away are both mechs
 	if (r <= w.getMaxRange() / 3) {
 		hit += 0;
 	}
