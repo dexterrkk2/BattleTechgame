@@ -1,0 +1,22 @@
+#include <iostream>
+#include <cmath>
+
+// Function to calculate distance
+int calculateRange(int startRow, int startCol, int targetRow, int targetCol) {
+    return std::sqrt((abs (startRow - targetRow)) + std::abs (startCol - targetCol));
+}
+
+int main() {
+    
+    int startRow = 5, startCol = 5; 
+    int targetRow = 0, targetCol = 0;      
+
+    std::cout << "Player is at (" << startRow << ", " << startCol << ").\n";
+    std::cout << "Enter the target hex coordinates (row and column): ";
+    std::cin >> targetRow >> targetCol;
+
+    int distance = calculateRange(startRow, startCol, targetRow, targetCol);
+    std::cout << "Distance to hex (" << targetRow << ", " << targetCol << "): " << distance << "\n";
+
+    return 0;
+}
