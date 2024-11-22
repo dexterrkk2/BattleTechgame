@@ -2,6 +2,7 @@
 #include <vector>
 #include <windows.h>
 using std::vector;
+
 //finds tartgets for the player
 vector<DrawnHex> FindTarget(vector<vector<DrawnHex>>& grid, Mech& playerMech)
 {
@@ -26,6 +27,7 @@ vector<DrawnHex> FindTarget(vector<vector<DrawnHex>>& grid, Mech& playerMech)
 	}
 	return targets;
 }
+
 //returns a vector of positions the player can move
 vector<DrawnHex> Player::CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> grid)
 {
@@ -122,6 +124,7 @@ vector<DrawnHex> Player::CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> g
     }
     return positions;
 }
+
 //changes the direction the player is facing which changes where they can move
 //also resets the color of hexes the player can move to back to blue
 void Player::Turn(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePositions)
@@ -143,6 +146,7 @@ void Player::Turn(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePosit
 		drawnHex[movePositions[i].getX()][movePositions[i].getY()].setColor(FOREGROUND_BLUE);
 	}
 }
+
 //changes player positions to where the player has selected, and changes where the mech is on the grid
 void Player::Move(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePositions, int option)
 {
@@ -154,6 +158,7 @@ void Player::Move(vector<vector<DrawnHex>>& drawnHex, vector<DrawnHex> movePosit
 	drawnHex[row][col].getHex().setMech(mech);
 	drawnHex[previousX][previousY].getHex().eraseMech();
 }
+
 //takes the player mech and fires it's weapons at the enemy mech.
 void Player::fireWeapon(vector<vector<DrawnHex>>& drawnHex, Player& enemy)
 {
@@ -170,6 +175,7 @@ void Player::fireWeapon(vector<vector<DrawnHex>>& drawnHex, Player& enemy)
 	//updates map after the enemy has been fired at
 	drawnHex[enemy.getRow()][enemy.getCol()].getHex().setMech(enemy.mech);
 }
+
 //checks if the player has targets left if they don't returns true, if they do returns false 
 bool Player::killedTarget(vector<vector<DrawnHex>>& drawnHex) {
 	vector<DrawnHex> targets = FindTarget(drawnHex, mech);
@@ -179,30 +185,34 @@ bool Player::killedTarget(vector<vector<DrawnHex>>& drawnHex) {
 	}
 	return true;
 }
+
 //takes the map gets where the player can move and lets the player choose to move there, or rotate to move somewhere else.
 void Player::playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex, int sizey, Player& enemy)
 {
-	//cout << player.getMech().getID() << endl;
-	//cout << "Your Walkspeed is " << player.getMech().walk() << endl;
 	cout << "it's your turn " << name << endl;
 	int amountMoved = 0;
+	
 	//allows player to move equal to their speed every turn
 	for (int i = 0; i < mech.getWalk(); i++)
 	{
 		//gets the places the player can move
 		vector<DrawnHex> movePositions = CanMoveTo(drawnHex[row][col], drawnHex);
+
 		//sets the places the player can move to green
 		for (int i = 0; i < movePositions.size(); i++)
 		{
 			drawnHex[movePositions[i].getX()][movePositions[i].getY()].setColor(FOREGROUND_GREEN);
 		}
+
 		//prints the hex grid
 		map.printHex(sizex, sizey, drawnHex);
+
 		//changes them back to blue after it's printed
 		for (int i = 0; i < movePositions.size(); i++)
 		{
 			drawnHex[movePositions[i].getX()][movePositions[i].getY()].setColor(FOREGROUND_BLUE);
 		}
+
 		//prints the options of where to move
 		for (int i = 0; i < movePositions.size(); i++)
 		{
@@ -210,13 +220,16 @@ void Player::playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex,
 		}
 		cout << movePositions.size() + 1 << " rotate ? ";
 		cout << movePositions.size() + 2 << " display mech stats ";
+
 		//gets input
 		int option = getIntRange(0, movePositions.size() + 2);
+
 		//throws an exception if the player selects an option not there, and gets past the while loop reseting it.
 		if (option > movePositions.size() + 2)
 		{
 			throw(option);
 		}
+
 		//houses the rotate logic
 		else if (option == movePositions.size() + 1)
 		{
@@ -234,8 +247,8 @@ void Player::playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex,
 			amountMoved++;
 		}
 	}
+
 	//firing code
 	setAmountMoved(amountMoved);
 	fireWeapon(drawnHex, enemy);
-	//gets enemy mechs
 }

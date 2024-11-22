@@ -4,8 +4,10 @@
 #include "PlayerInput.h";
 #include "Mech.h"
 using std::vector;
+
 //defines directions as enums, 0-7
 enum Direction { NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST };
+
 //overloads ++ operator to work for directions
 inline enum  Direction operator++(enum Direction& d)
 {
@@ -21,6 +23,7 @@ inline enum  Direction operator++(enum Direction& d)
     }
     return d;
 };
+
 //overloads -- operator to work for directions
 inline enum  Direction operator--(enum Direction& d)
 {
@@ -36,6 +39,7 @@ inline enum  Direction operator--(enum Direction& d)
     }
     return d;
 };
+
 class Player 
 {
 private:
@@ -46,6 +50,7 @@ private:
 public:
     Player(int startRow, int startCol, Direction startFacing, Mech& mech, string name)
         : row(startRow), col(startCol), facing(startFacing), mech(mech), name(name) {}
+
     // Change facing direction (left or right)
     void turnLeft() 
     {
@@ -57,8 +62,10 @@ public:
         //directions defined as they would be on a compass. Turning left is the same as going clockwise on a compass
         ++facing;
     }
+  
     //defines where a player can move and returns a vector of places h
     vector<DrawnHex> CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> grid);
+    
     //sets position of player
     void SetPostiiton(int row, int col) 
     {
@@ -70,6 +77,7 @@ public:
     {
         mech.setMoved(amountMoved);
     }
+ 
     int getRow() 
     {
         return row;
@@ -90,6 +98,7 @@ public:
     {
         this->mech = mech;
     }
+ 
     //runs the player turn takes in an enemy and fires a weapon at it. updates the map afterwords and takes in size to pass to map
     void playerTurn(vector<vector<DrawnHex>>& drawnHex, Map& map, int sizex, int sizey, Player& enemy);
     //moves the player on the map 1 forward or backwards tile. prints map afterwords. 

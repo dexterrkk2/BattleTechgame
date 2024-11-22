@@ -27,9 +27,6 @@
     <ClCompile Include="Mech.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RangeTestCode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TestFileIoCode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

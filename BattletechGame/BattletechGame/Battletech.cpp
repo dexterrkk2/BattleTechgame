@@ -35,6 +35,7 @@ int main()
 	vector<vector<Hex>> hexes;
 	Mech blankMech;
 	Hex blankHex(blankMech);
+
 	//creates a vector of columns and then adds it to a vector to make rows based on size defined up top
 	for (int i = 0; i < sizex; i++)
 	{
@@ -48,18 +49,23 @@ int main()
 		//pushes column back to vector of columns. 
 		hexes.push_back(cols);
 	}
+
 	//gets name for both players
 	string playerName = getPlayerName();
 	string enemyName = getPlayerName();
+
 	//creates blank mech for both players
 	Mech mech;
 	Mech enemyMech;
+
 	//creates player objects for both players
 	Player player(0, (sizey - 1)/2, Direction::NORTH, mech, playerName);
 	Player enemyPlayer((sizex - 1), (sizey - 1)/2, Direction::NORTH, enemyMech, enemyName);
+	
 	//takes in players mechs and updates them. Works because player has reference to these mechs
 	selectMech(mech);
 	selectMech(enemyMech);
+	
 	//checks if they picked the same mech and changes first letter to a lower case to distinguish them 
 	if (enemyPlayer.getMech().getID() == player.getMech().getID()) 
 	{
@@ -68,12 +74,15 @@ int main()
 		lowerCase[0] = tolower(lowerCase[0]);
 		enemyMech.setID(lowerCase);
 	}
+	
 	//sets what hex the player is on and their mech to the tile
 	hexes[player.getRow()][player.getCol()].setMech(player.getMech());
 	hexes[enemyPlayer.getRow()][enemyPlayer.getCol()].setMech(enemyPlayer.getMech());
 	vector<Player> players = { player, enemyPlayer };
+	
 	//creates 2d vector
 	vector<vector<DrawnHex>> drawnHex;
+	
 	//creates a vector of columns and then adds it to a vector to make rows
 	for (int i = 0; i < sizex; i++)
 	{
@@ -84,10 +93,13 @@ int main()
 		}
 		drawnHex.push_back(cols);
 	}
+	
 	//creates the map
 	Map map;
+	
 	//draws the grid
 	map.SetGrid(sizex, sizey, drawnHex);
+	
 	//tries moving fails if player picks a number too large, and it passes the while loop that resets it. 
 	try 
 	{
@@ -97,6 +109,7 @@ int main()
 		{
 			//runs the first player's turn
 			player.playerTurn(drawnHex, map, sizex, sizey, enemyPlayer);
+			
 			//checks if enemy died
 			turnCheck = player.killedTarget(drawnHex);
 			if (!turnCheck) 
@@ -105,6 +118,7 @@ int main()
 				cout<< player.getName()<<" Won" << endl;
 				break;
 			}
+			
 			//runs the second players turn
 			enemyPlayer.playerTurn(drawnHex, map, sizex, sizey, player);
 			turnCheck = enemyPlayer.killedTarget(drawnHex);
@@ -116,6 +130,7 @@ int main()
 		//does this as long as both mechs are alive
 		} while (turnCheck);
 	}
+	
 	//catches error
 	catch (int x) 
 	{

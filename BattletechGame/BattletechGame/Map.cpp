@@ -7,6 +7,7 @@ using std::endl;
 using std::string;
 using std::cin;
 using namespace std;
+
 //populates the hex grid with cordinates
 void Map::SetGrid(int sizeX, int sizeY, vector<vector<DrawnHex>> &drawnHex)
 {
@@ -21,6 +22,7 @@ void Map::SetGrid(int sizeX, int sizeY, vector<vector<DrawnHex>> &drawnHex)
 		}
 	}
 }
+
 void printUpperHex(int& width) 
 {
     //prints half the spaces needed for spacing
@@ -67,6 +69,7 @@ void printLowerHex(const int& width, string image)
     }
     cout << "/" << "  ";
 }
+
 //prints the hexes of the grid based off size and color they need to be.
 void Map::printHex(int rows, int cols, vector<vector<DrawnHex>> &hex) {
     // Height and width of each hexagon

@@ -113,10 +113,8 @@ public:
 	//Deals damage to the armor, then deals any remaining damage to the structure
 	void takeDamage(int damageTaken);
 
-	Limb(int a = 0, int s = 1, vector<Weapon> w = *new vector<Weapon>(), bool isD = false, int AD = 0, int SD = 0)
-		: armor(a), structure(s), weaponsOnLimb(w), structureDamage(SD), armorDamage(AD), isDestroyed(isD) {
-
-	}
+	Limb(int a = 0, int s = 1, vector<Weapon> w = {}, bool isD = false, int AD = 0, int SD = 0)
+		: armor(a), structure(s), weaponsOnLimb(w), structureDamage(SD), armorDamage(AD), isDestroyed(isD) {}
 	Limb(const Limb& old)
 		: armor(old.armor), structure(old.structure), isDestroyed(old.isDestroyed)
 		, armorDamage(old.armorDamage), structureDamage(old.structureDamage) {
@@ -301,7 +299,7 @@ inline int gator(Weapon w, int h, int r, int EM, int AM) {
 }
 
 // This Demon Code Ruined Our Lives
-// This code takes the players square a target square and gets the enemy mech from the square. 
+// This code takes the player and gets the enemy player and gets the mech from each. 
 // It then allows the user to pick what weapon they want to fire and removes ammo from the weapon they chose.
 // Then the code calculates what number the user needs to roll in order to deal damage.
 // Finally, the damage is assigned to a limb with a dice roll. 
