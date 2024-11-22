@@ -140,6 +140,7 @@
     <ClInclude Include="Mech.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerInput.h" />
+    <ClInclude Include="Range.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

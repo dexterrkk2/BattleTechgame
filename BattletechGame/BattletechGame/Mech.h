@@ -4,6 +4,7 @@
 #include <vector>
 #include <regex>
 #include "fileIO.h"
+#include "Range.h"
 using std::cin;
 using std::cout;
 using std::endl;
@@ -78,7 +79,7 @@ public:
 	//Displays all the information about the mech, along with the weapons and status of each limb.
 	void displayMech();
 	//Allows a player to fire a weapon at a target mech
-	template <class T> void fireWeapon(T& targetSquare);
+	template <class T> void fireWeapon(T& currentPlayer, T& targetEnemy);
 
 	//Default constructor
 	Mech(int w = -1, int h = 0, int lb = 0, int m = 0, string i = "   ", vector<Limb> l = {})
@@ -309,9 +310,10 @@ inline int gator(Weapon w, int h, int r, int EM, int AM) {
 // It then allows the user to pick what weapon they want to fire and removes ammo from the weapon they chose.
 // Then the code calculates what number the user needs to roll in order to deal damage.
 // Finally, the damage is assigned to a limb with a dice roll.
-template <class T> inline void Mech::fireWeapon(T& targetPlayer) {
-	Mech& Enemy = targetPlayer.getMech();
-	std::vector<Weapon> weaponsAvailable;
+template <class T> inline void Mech::fireWeapon(T& currentPlayer, T& enemyPlayer) {
+	Mech& Player = currentPlayer.getMech();
+	Mech& Enemy = enemyPlayer.getMech();
+	std::vector<Weapon> weaponsAvailable = {};
 	for (int i = 0; i < 6; ++i) {
 		if (!L[i].getIsDestroyed()) {
 			for (int j = 0; j < L[i].getWeapons().size(); ++j) {
@@ -354,10 +356,13 @@ template <class T> inline void Mech::fireWeapon(T& targetPlayer) {
 	for (int i = 0; i < weaponsSelected.size(); ++i) {
 		int result = rollDice();
 		cout << "You rolled a " << result << " to hit" << endl;
-		// 1 in gator is sample code. We need to calculate range properly
-		if (result >= gator(weaponsSelected[i], heat, 1, targetPlayer.getMech().getMoved(), moved)) {
+		int range = calculateRange(currentPlayer.getRow(), currentPlayer.getCol(), enemyPlayer.getRow(), enemyPlayer.getCol());
+		if (result >= gator(weaponsSelected[i], heat, range, enemyPlayer.getMech().getMoved(), moved)) {
 			weaponDamage.push_back(weaponsSelected[i].getDamge());
-			cout << "You needed a " << gator(weaponsSelected[i], heat, 1, targetPlayer.getMech().getMoved(), moved) << endl;
+			cout << "You needed a " << gator(weaponsSelected[i], heat, range, enemyPlayer.getMech().getMoved(), moved) << endl;
+		}
+		else {
+			cout << "You needed a " << gator(weaponsSelected[i], heat, range, enemyPlayer.getMech().getMoved(), moved) << endl;
 		}
 	}
 	for (int i = 0; i < weaponDamage.size(); ++i) {

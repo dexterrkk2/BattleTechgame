@@ -166,7 +166,7 @@ void Player::fireWeapon(vector<vector<DrawnHex>>& drawnHex, Player& enemy)
 	//gets an input from the screen equal to number of targers
 	int fireAt = getIntRange(0, targets.size());
 	//fires at selected target
-	mech.fireWeapon(enemy);
+	mech.fireWeapon(*this, enemy);
 	//updates map after the enemy has been fired at
 	drawnHex[enemy.getRow()][enemy.getCol()].getHex().setMech(enemy.mech);
 }

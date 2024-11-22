@@ -41,11 +41,13 @@ void Mech::displayMech() {
 	cout << "Right Arm: " << L[RA].getArmor() - L[RA].getArmorDamage() << "(" << L[RA].getStructure() - L[RA].getStructureDamgage() << ")" << endl;
 	cout << "Left Leg: " << L[LL].getArmor() - L[LL].getArmorDamage() << "(" << L[LL].getStructure() - L[LL].getStructureDamgage() << ")" << endl;
 	cout << "Right Leg: " << L[RL].getArmor() - L[RL].getArmorDamage() << "(" << L[RL].getStructure() - L[RL].getStructureDamgage() << ")" << endl;
-	cout << "Weapon(shots)" << endl << "xxxxxxxxxxxxxxxxxxx" << endl;
+	cout << "Weapon" << endl << "xxxxxxxxxxxxxxxxxxx" << endl;
 	for (int i = 0; i < L.size(); ++i) {
 		if (L[i].getWeapons().size() > 0) {
 			for (int j = 0; j < L[i].getWeapons().size(); ++j) {
-				cout << L[i].getWeapons()[j] << "(" << L[i].getWeapons()[j].getAmmo().getShots() << ")" << endl;
+				if (!L[i].getIsDestroyed()) {
+					cout << L[i].getWeapons()[j] << endl;
+				}
 			}
 
 		}
