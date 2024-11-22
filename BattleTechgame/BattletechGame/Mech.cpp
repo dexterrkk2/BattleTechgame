@@ -14,6 +14,8 @@ using std::regex;
 using std::smatch;
 using std::ostream;
 
+// If a limb takes damage, all damage is dealt to the armor, and then any excess is dealt to the structure.
+// If the structure is at 0, destroy the limb.
 void Limb::takeDamage(int damageTaken) {
 	if (armor > armorDamage) {
 		armorDamage += damageTaken;
@@ -31,6 +33,8 @@ void Limb::takeDamage(int damageTaken) {
 	}
 }
 
+// Displays the mech for the user.
+// Armor and structure values show how much health is left for each limb.
 void Mech::displayMech() {
 	cout << "Name: " << ID << endl;
 	cout << "Heat: " << heat << endl;
@@ -54,6 +58,14 @@ void Mech::displayMech() {
 	}
 }
 
+// Takes an external file and creates a mech from it's contents. 
+// The File MUST be in the following format, limbs must be in the order H,CT,LA,RA,LL,RL
+// ID
+// walkSpeed
+// weight
+// Ammo in all 6 limbs seperated by ***
+// Weapons in all 6 limbs seperated by xxx
+// Armor and structure in all 6 limbs.
 Mech Mech::makeMech(string fileName) {
 	vector<string> MP = readData(fileName);
 	string ID = MP[0];
@@ -63,7 +75,7 @@ Mech Mech::makeMech(string fileName) {
 	vector<Limb> parts(6);
 	vector<vector<Weapon>> mechWeapons(6);
 	vector<vector<Ammo>> mechAmmo(6);
-
+	// Currently this system only works for AC weapons, but later types could be added without much difficulty
 	regex ammoRegex(R"(AC(\d+)Ammo)");
 	regex weaponRegex(R"(AC(\d+))");
 
@@ -128,7 +140,7 @@ Mech Mech::makeMech(string fileName) {
 			}
 		}
 	}
-	++i; //Enters the mech section of the text file
+	++i; //Enters the mech armor/structure of the text file
 	Limb head(stoi(MP[i]), stoi(MP[i + 1]), mechWeapons[0]);
 	parts[H] = head;
 	i += 2;

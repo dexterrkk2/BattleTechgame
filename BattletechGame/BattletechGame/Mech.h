@@ -2,16 +2,14 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <regex>
 #include "fileIO.h"
 #include "Range.h"
+
 using std::cin;
 using std::cout;
 using std::endl;
 using std::string;
 using std::vector;
-using std::regex;
-using std::smatch;
 using std::ostream;
 
 enum forMech {
@@ -36,39 +34,32 @@ private:
 	int moved;
 	vector<Limb> L;
 public:
-	//Returns the walk speed.
+
 	int getWalk() const {
 		return walkSpeed;
 	}
-	//Returns the walk speed.
 	int getHeat() const {
 		return heat;
 	}
-	//Returns the Weight.
 	int getWeight() const {
 		return weight;
 	}
-	//Returns the Mech Name and Image.
 	string getID() const {
 		return ID;
 	}
-	//Returns how fast the mech walked in a turn.
 	int getMoved() const {
 		return moved;
 	}
-	//Returns the entire Limb vector.
 	vector<Limb> getLimbs() const {
 		return L;
 	}
-	
-	//Attaches the Name to the Mech.
 	void setID(string ID) {
 		this->ID = ID;
 	}
-	//Sets how much the mech moved in one turn.
 	void setMoved(int amountMoved) {
 		moved = amountMoved;
 	}
+
 	//Creates a mech from a text file
 	Mech makeMech(string fileName);
 	//Sets the mechs walkspeed to one, which removes the mech in Hex.
@@ -81,16 +72,13 @@ public:
 	//Allows a player to fire a weapon at a target mech
 	template <class T> void fireWeapon(T& currentPlayer, T& targetEnemy);
 
-	//Default constructor
 	Mech(int w = -1, int h = 0, int lb = 0, int m = 0, string i = "   ", vector<Limb> l = {})
 		:walkSpeed(w), heat(h), weight(lb), ID(i), moved(m), L(l) {}
-	//Copy Constructor
 	Mech(const Mech& old) : walkSpeed(old.walkSpeed), heat(old.heat), weight(old.weight), ID(old.ID), moved(old.moved) {
 		for (int i = 0; i < old.L.size(); ++i) {
 			L.push_back(old.L[i]);
 		}
 	}
-	//Deconstructor
 	~Mech() {}
 };
 
@@ -122,6 +110,7 @@ public:
 	bool getIsDestroyed() const {
 		return isDestroyed;
 	}
+	//Deals damage to the armor, then deals any remaining damage to the structure
 	void takeDamage(int damageTaken);
 
 	Limb(int a = 0, int s = 1, vector<Weapon> w = *new vector<Weapon>(), bool isD = false, int AD = 0, int SD = 0)
@@ -211,14 +200,8 @@ public:
 	virtual Ammo getAmmo() {
 		return ammoBin;
 	}
-	Weapon(string n = "", int h = 0, Ammo a = Ammo(), int maxR = 0, int minR = 0, bool cf = false)
-		: name(n), heatGenerated(h), ammoBin(a), maxRange(maxR), minRange(minR), canFire(cf) {
-		damage = a.getDamage();
-	}
-	Weapon(const Weapon& old)
-		: name(old.name), damage(old.damage), heatGenerated(old.heatGenerated)
-		, ammoBin(old.ammoBin), maxRange(old.maxRange), minRange(old.minRange), canFire(old.canFire) {}
-	friend ostream& operator<<(ostream& os, Weapon w) 
+
+	friend ostream& operator<<(ostream& os, Weapon w)
 	{
 		os << w.name;
 		return os;
@@ -226,6 +209,14 @@ public:
 	virtual void displayWeapon() {
 		cout << name << " " << damage << " " << heatGenerated << " " << ammoBin << " " << maxRange << " " << minRange << " " << canFire << endl;
 	}
+
+	Weapon(string n = "", int h = 0, Ammo a = Ammo(), int maxR = 0, int minR = 0, bool cf = false)
+		: name(n), heatGenerated(h), ammoBin(a), maxRange(maxR), minRange(minR), canFire(cf) {
+		damage = a.getDamage();
+	}
+	Weapon(const Weapon& old)
+		: name(old.name), damage(old.damage), heatGenerated(old.heatGenerated)
+		, ammoBin(old.ammoBin), maxRange(old.maxRange), minRange(old.minRange), canFire(old.canFire) {}
 };
 
 //Derived Classes
@@ -260,10 +251,12 @@ inline int rollDice() {
 inline int gator(Weapon w, int h, int r, int EM, int AM) {
 	// Gunnery: Base chance to hit
 	int hit = 4;
+	
 	// Attacker Move: How did the attacker move
 	if (AM > 0) {
 		hit += 1;
 	}
+	
 	// Target Move: How much did the target move
 	//Hit stays the same if the target doesn't move
 	if (EM == 0) {
@@ -272,8 +265,9 @@ inline int gator(Weapon w, int h, int r, int EM, int AM) {
 	else {
 		hit = hit + ((EM - 1) / 2);
 	}
+	
 	// Other: Heat modifers
-	// Player heat makes it harder for shots to land
+	// Player heat makes it harder for shots to land.
 	if (h < 8) {
 		hit += 0;
 	}
@@ -289,7 +283,8 @@ inline int gator(Weapon w, int h, int r, int EM, int AM) {
 	else {
 		hit += 4;
 	}
-	// Range: How far away are both mechs
+	
+	// Range: How far away are both mechs?
 	if (r <= w.getMaxRange() / 3) {
 		hit += 0;
 	}
@@ -306,13 +301,15 @@ inline int gator(Weapon w, int h, int r, int EM, int AM) {
 }
 
 // This Demon Code Ruined Our Lives
-// This code takes a target square and gets the enemy mech from the square. 
+// This code takes the players square a target square and gets the enemy mech from the square. 
 // It then allows the user to pick what weapon they want to fire and removes ammo from the weapon they chose.
 // Then the code calculates what number the user needs to roll in order to deal damage.
-// Finally, the damage is assigned to a limb with a dice roll.
+// Finally, the damage is assigned to a limb with a dice roll. 
 template <class T> inline void Mech::fireWeapon(T& currentPlayer, T& enemyPlayer) {
 	Mech& Player = currentPlayer.getMech();
 	Mech& Enemy = enemyPlayer.getMech();
+
+	// Determines what weapons are available to fire on all non-destroyed limbs
 	std::vector<Weapon> weaponsAvailable = {};
 	for (int i = 0; i < 6; ++i) {
 		if (!L[i].getIsDestroyed()) {
@@ -326,7 +323,9 @@ template <class T> inline void Mech::fireWeapon(T& currentPlayer, T& enemyPlayer
 			weaponsAvailable.erase(weaponsAvailable.begin() + i);
 		}
 	}
-	int whichWeapon = -1;
+
+	// Allows the user to select what weapons they wish to fire
+	int whichWeapon = -1; // Initialized to some non-zero number
 	vector<Weapon> weaponsSelected;
 	do {
 		if (weaponsAvailable.size() == 0) {
@@ -348,23 +347,29 @@ template <class T> inline void Mech::fireWeapon(T& currentPlayer, T& enemyPlayer
 			weaponsAvailable.erase(weaponsAvailable.begin() + whichWeapon - 1);
 		}
 	} while (whichWeapon != 0);
+
+	// Removes ammo from the selected weapons
 	for (int i = 0; i < weaponsSelected.size(); ++i) {
 		weaponsSelected[i].getAmmo().removeAmmo();
 	}
 
+	// Determine how much damage can be dealt, and assign it to a limb if the user hits a shot
 	vector<int> weaponDamage;
 	for (int i = 0; i < weaponsSelected.size(); ++i) {
 		int result = rollDice();
 		cout << "You rolled a " << result << " to hit" << endl;
 		int range = calculateRange(currentPlayer.getRow(), currentPlayer.getCol(), enemyPlayer.getRow(), enemyPlayer.getCol());
-		if (result >= gator(weaponsSelected[i], heat, range, enemyPlayer.getMech().getMoved(), moved)) {
+		int gatorResult = gator(weaponsSelected[i], heat, range, enemyPlayer.getMech().getMoved(), moved);
+		if (result >= gatorResult) {
 			weaponDamage.push_back(weaponsSelected[i].getDamge());
-			cout << "You needed a " << gator(weaponsSelected[i], heat, range, enemyPlayer.getMech().getMoved(), moved) << endl;
+			cout << "You needed a " << gatorResult << endl;
 		}
 		else {
-			cout << "You needed a " << gator(weaponsSelected[i], heat, range, enemyPlayer.getMech().getMoved(), moved) << endl;
+			cout << "You needed a " << gatorResult << endl;
 		}
 	}
+
+	//Implements the weapon hit table, and checks if a critical limb was destroyed
 	for (int i = 0; i < weaponDamage.size(); ++i) {
 		int result = rollDice();
 		if (result == 12) {
