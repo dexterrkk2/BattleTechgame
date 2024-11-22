@@ -63,7 +63,7 @@ public:
 class DrawnHex
 {
 private:
-	//posiion information as well as assigned hex
+	//position information as well as assigned hex
 	int x;
 	int y;
 	Hex& hex;

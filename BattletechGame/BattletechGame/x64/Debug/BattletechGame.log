@@ -1,2 +1,51 @@
-﻿  TestFileIoCode.cpp
+﻿  Battletech.cpp
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Battletech.cpp')
+  
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Range.h(7,21): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'Battletech.cpp')
+  
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(8,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Player.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Battletech.cpp')
+  
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(34,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(135,13): warning C4101: 'x': unreferenced local variable
+  Map.cpp
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Range.h(7,21): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'Map.cpp')
+  
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Map.cpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Map.cpp')
+  
+  Mech.cpp
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Range.h(7,21): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'Mech.cpp')
+  
+  Player.cpp
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Player.cpp')
+  
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Range.h(7,21): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'Player.cpp')
+  
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Player.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Player.cpp')
+  
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Player.cpp(172,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Player.cpp(225,52): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Mech.h(319,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Player.cpp')
+      C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Mech.h(319,13):
+      the template instantiation context (the oldest one first) is
+          C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Player.cpp(174,7):
+          see reference to function template instantiation 'void Mech::fireWeapon<Player>(T &,T &)' being compiled
+          with
+          [
+              T=Player
+          ]
+  
+  Generating Code...
   BattletechGame.vcxproj -> C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\x64\Debug\BattletechGame.exe

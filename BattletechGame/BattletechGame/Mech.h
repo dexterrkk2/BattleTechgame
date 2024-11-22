@@ -62,7 +62,7 @@ public:
 
 	//Creates a mech from a text file
 	Mech makeMech(string fileName);
-	//Sets the mechs walkspeed to one, which removes the mech in Hex.
+	//Sets the mechs walkspeed to negative one, which removes the mech in Hex.
 	void destroyMech() {
 		walkSpeed = -1;
 		cout << "Mech Destroyed" << endl;
