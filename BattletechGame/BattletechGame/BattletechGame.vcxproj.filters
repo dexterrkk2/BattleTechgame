@@ -24,10 +24,13 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\TestFileIoCode.cpp">
+    <ClCompile Include="Mech.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mech.cpp">
+    <ClCompile Include="RangeTestCode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestFileIoCode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
