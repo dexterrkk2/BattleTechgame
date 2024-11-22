@@ -1,30 +1,4 @@
-﻿  Battletech.cpp
-C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'Battletech.cpp')
-  
-C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Range.h(7,21): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
-  (compiling source file 'Battletech.cpp')
-  
-C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(8,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Player.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'Battletech.cpp')
-  
-C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(34,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Battletech.cpp(120,13): warning C4101: 'x': unreferenced local variable
-  Map.cpp
-C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Range.h(7,21): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
-  (compiling source file 'Map.cpp')
-  
-C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Map.cpp(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file 'Map.cpp')
-  
-  Mech.cpp
-C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Range.h(7,21): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
-  (compiling source file 'Mech.cpp')
-  
-  Player.cpp
+﻿  Player.cpp
 C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\Map.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   (compiling source file 'Player.cpp')
   
@@ -47,5 +21,4 @@ C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\BattletechGame\
               T=Player
           ]
   
-  Generating Code...
   BattletechGame.vcxproj -> C:\Users\samiljas\Documents\GitHub\BattleTechgame\BattleTechgame\x64\Debug\BattletechGame.exe

@@ -58,7 +58,7 @@ vector<DrawnHex> Player::CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> g
     {
         //cout << "NorthEast" << endl;
         //checks in front of player to see if player is going to go out of bounds
-        if (position.getX() < 0 && position.getY() > 0)
+        if (position.getX() > 0 && position.getY() > 0)
         {
 			if (!grid[position.getX() - 1][position.getY()-1].getHex().hasmech())
 			{
@@ -67,7 +67,7 @@ vector<DrawnHex> Player::CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> g
 			}
         }
         //checks behind player to see if player is going to go out of bounds
-        if (position.getX() > grid.size() - 1 && position.getY() < grid[0].size() - 1)
+        if (position.getX() < grid.size() - 1 && position.getY() < grid[0].size() - 1)
         {
 			if (!grid[position.getX() + 1][position.getY()+1].getHex().hasmech())
 			{
@@ -100,7 +100,7 @@ vector<DrawnHex> Player::CanMoveTo(DrawnHex position, vector<vector<DrawnHex>> g
     }
     else if (facing == Direction::SOUTHEAST || facing == Direction::NORTHWEST)
     {
-        //cout << "NorthWest" << endl;
+        cout << "NorthWest" << endl;
         //checks in front of player to see if player is going to go out of bounds
         if (position.getX() > 0 && position.getY() < grid[0].size() - 1)
         {
